@@ -37,7 +37,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
-  gem 'rspec-rails', '~> 7.0.0'
+  gem "rspec-rails", "~> 7.0.0"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
@@ -53,7 +53,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  
 end
 
 gem "tailwindcss-rails", "~> 2.7"
