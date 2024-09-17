@@ -17,7 +17,7 @@ RSpec.describe Tweet, type: :model do
   it { should have_many(:retweets).class_name('Tweet').with_foreign_key('origin_id') }
   it { should have_many(:likes) }
   it { should have_many(:comments) }
- 
+
   it { should validate_length_of(:body).is_at_most(280) }
 
   let(:user) { User.create!(email: 'test@example.com', password: 'password', username: 'testuser') }
