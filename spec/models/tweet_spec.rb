@@ -12,17 +12,14 @@
 require 'rails_helper'
 
 RSpec.describe Tweet, type: :model do
-  # Association tests using Shoulda Matchers
   it { should belong_to(:user) }
   it { should belong_to(:origin).class_name('Tweet').optional }
   it { should have_many(:retweets).class_name('Tweet').with_foreign_key('origin_id') }
   it { should have_many(:likes) }
   it { should have_many(:comments) }
-
-  # Validation tests using Shoulda Matchers
+ 
   it { should validate_length_of(:body).is_at_most(280) }
 
-  # Setup a user and origin tweet using let
   let(:user) { User.create!(email: 'test@example.com', password: 'password', username: 'testuser') }
   let(:origin_tweet) { Tweet.create!(body: 'Original tweet', user: user) }
 
