@@ -39,6 +39,8 @@ group :development, :test do
 
   gem "rspec-rails", "~> 7.0.0"
 
+  gem 'shoulda-matchers', '~> 6.0'
+
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
@@ -49,6 +51,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'annotate'
 end
 
 gem "tailwindcss-rails", "~> 2.7"
+
+gem "devise", "~> 4.9"
