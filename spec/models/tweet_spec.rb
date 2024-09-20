@@ -24,19 +24,23 @@ RSpec.describe Tweet, type: :model do
   it { is_expected.to validate_length_of(:body).is_at_most(280) }
 
   context 'when origin is present' do
-    before { tweet.origin = Tweet.new(user: user, body: 'Original tweet') }
+    before do 
+      tweet.origin = Tweet.new(user: user, body: 'Original tweet') 
+      tweet.body = nil
+    end
 
     it 'allows body to be nil' do
-      tweet.body = nil
       expect(tweet).to be_valid
     end
   end
 
   context 'when origin is not present' do
-    before { tweet.origin = nil }
+    before do 
+      tweet.origin = nil
+      tweet.body = nil 
+    end
 
     it 'does not allow body to be nil' do
-      tweet.body = nil
       expect(tweet).not_to be_valid
     end
   end
