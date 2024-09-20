@@ -23,6 +23,6 @@ class User < ApplicationRecord
   validates :username, uniqueness: { case_sensitive: false }
 
   has_many :tweets, dependent: :nullify
-  has_many :comments, dependent: :nullify
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 end
