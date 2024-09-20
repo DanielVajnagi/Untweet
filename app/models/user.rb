@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false }
   validates :username, uniqueness: { case_sensitive: false }
 
-  has_many :tweets
-  has_many :comments
-  has_many :likes
+  has_many :tweets, dependent: :nullify
+  has_many :comments, dependent: :nullify
+  has_many :likes, dependent: :destroy
 end

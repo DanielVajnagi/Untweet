@@ -12,18 +12,10 @@
 class Tweet < ApplicationRecord
   belongs_to :user
   belongs_to :origin, class_name: "Tweet", optional: true
-  has_many :retweets, class_name: "Tweet", foreign_key: "origin_id"
-  has_many :likes
-  has_many :comments
+  has_many :retweets, class_name: "Tweet", foreign_key: :origin_id, dependent: :nullify
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :nullify
 
   validates :body, length: { maximum: 280 }, allow_nil: true
-  validate :body_or_origin_must_be_present
-
-  private
-
-  def body_or_origin_must_be_present
-    if body.blank? && origin.blank?
-      errors.add(:base, "Either body or origin must be present")
-    end
-  end
+  validates :body, presence: true, unless: -> { origin.present? }
 end
