@@ -43,4 +43,16 @@
   .devise-danger{
     @apply w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded;
   }
+
+  .devise-back-btn{
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+
+  .devise-back{
+    @apply absolute top-0 right-0 mt-4 mr-4;
+  }
+
+  .devise-header{
+    @apply text-2xl font-bold mb-6;
+  }
 }
