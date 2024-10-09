@@ -3,6 +3,7 @@
 @import "tailwindcss/utilities";
 
 @import './components/devise.css';
+@import './components/common.css';
 
 /*
 

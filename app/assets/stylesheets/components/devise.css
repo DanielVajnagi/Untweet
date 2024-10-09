@@ -1,5 +1,4 @@
 @layer components {
-  /* components/devise.css */
 
   .devise-form {
     @apply max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg;
