@@ -39,5 +39,4 @@
   .devise-error {
     @apply text-red-600 bg-red-100 border border-red-600 p-4 rounded-md mb-4 font-bold;
   }
-
 }
