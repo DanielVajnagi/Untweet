@@ -1,4 +1,3 @@
-
 <div class="devise-form">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put}) do |f| %>
   <h2 class="text-2xl font-bold mb-6">Edit <%= resource_name.to_s.humanize %> </h2>
@@ -9,8 +8,6 @@
   </div>
 
   <div class="devise-field">
-
-
     <%= f.label :username, class: "devise-label" %>
     <%= f.text_field :username, value: resource.username, class: "devise-input" %>
   </div>
@@ -46,11 +43,7 @@
     <%= f.submit "Update", class: "devise-submit" %>
   </div>
 
- 
-  
-
 <% end %>
  <div class="devise-text"> <%= button_to "Delete my account", registration_path(resource_name), data: {  confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "devise-danger" %></div>
-
 
 </div>
