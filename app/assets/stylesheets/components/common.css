@@ -1,17 +1,17 @@
 @layer components {
-  .logout-btn{
+  .logout-btn {
     @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded;
   }
 
-  .header-1{
+  .header-1 {
     @apply text-3xl font-bold;
   }
 
-  .container-shadow{
+  .container-shadow {
     @apply container mx-auto my-8 bg-white p-6 rounded shadow;
   }
 
-  .text-line{
+  .text-line {
     @apply mt-6;
   }
 }
