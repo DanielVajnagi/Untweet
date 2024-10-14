@@ -1,0 +1,31 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "devise-form" }) do |f| %>
+  <div class="flex justify-center mb-6">
+    <%= image_tag "logo.png", alt: "Logo" %>
+  </div>
+
+  <div class="devise-field">
+    <%= f.label :email, class: "devise-label" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "devise-input" %>
+  </div>
+
+  <div class="devise-field">
+    <%= f.label :password, class: "devise-label" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "devise-input" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="devise-field flex items-center">
+      <%= f.check_box :remember_me, class: "mr-2" %>
+      <%= f.label :remember_me, class: "text-gray-700" %>
+    </div>
+  <% end %>
+
+  <div class="devise-submit-box">
+    <%= f.submit "Log in", class: "devise-submit" %>
+  </div>
+
+  <div class="text-center">
+    <p class="devise-text">Don't have an account?</p>
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "devise-link" %>
+  </div>
+<% end %>

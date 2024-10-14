@@ -1,0 +1,57 @@
+@layer components {
+  .devise-form {
+    @apply max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg;
+  }
+
+  .devise-logo {
+    @apply h-16 w-16;
+  }
+
+  .devise-label {
+    @apply block text-gray-700 font-medium mb-2;
+  }
+
+  .devise-input {
+    @apply shadow-md border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-300;
+  }
+
+  .devise-submit {
+    @apply w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300;
+  }
+
+  .devise-link {
+    @apply mt-2 inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded;
+  }
+
+  .devise-text {
+    @apply text-gray-600;
+  }
+
+  .devise-field {
+    @apply mb-4;
+  }
+
+  .devise-submit-box {
+    @apply flex items-center justify-center mb-4;
+  }
+
+  .devise-error {
+    @apply text-red-600 bg-red-100 border border-red-600 p-4 rounded-md mb-4 font-bold;
+  }
+
+  .devise-danger {
+    @apply w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded;
+  }
+
+  .devise-back-btn {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+
+  .devise-back {
+    @apply absolute top-0 right-0 mt-4 mr-4;
+  }
+
+  .devise-header {
+    @apply text-2xl font-bold mb-6;
+  }
+}
