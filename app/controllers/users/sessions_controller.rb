@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  before_action :configure_sign_in_params, only: [:create]
+  before_action :configure_sign_in_params, only: [ :create ]
 
   def create
     params[:user][:login] ||= params[:user][:email]
@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
       sign_in(resource_name, resource)
       redirect_to after_sign_in_path_for(resource)
     else
-      set_flash_message(:alert, :invalid, authentication_keys: 'login')
+      set_flash_message(:alert, :invalid, authentication_keys: "login")
       redirect_to new_user_session_path
     end
   end
@@ -18,6 +18,6 @@ class Users::SessionsController < Devise::SessionsController
   protected
 
   def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:login])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [ :login ])
   end
 end
