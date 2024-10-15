@@ -1,0 +1,16 @@
+<div class="tweet-form-container">
+  <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
+    <% if @tweet.errors.any? %>
+      <%= render 'error_messages' %>
+    <% end %>
+
+    <div>
+      <%= form.label :body, 'What’s happening?', class: 'tweet-label' %>
+      <%= form.text_area :body, placeholder: 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
+    </div>
+
+    <div>
+      <%= form.submit 'Tweet', class: 'tweet-submit' %>
+    </div>
+  <% end %>
+</div>

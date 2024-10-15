@@ -1,0 +1,20 @@
+<li class="tweet-item">
+  <div class="tweet-username">
+    <%= tweet.user.present? ? tweet.user.username : "Deleted User" %>
+  </div>
+  <p class="tweet-body"><%= tweet.body %></p>
+  <small class="tweet-time">
+    Untweeted on <%= tweet.created_at.in_time_zone('Kyiv').strftime("%B %d, %Y at %I:%M %p") %>
+    <% if tweet.updated_at != tweet.created_at %>
+      <br>Updated on <%= tweet.updated_at.in_time_zone('Kyiv').strftime("%B %d, %Y at %I:%M %p") %>
+    <% end %>
+  </small>
+  <div class="tweet-ud-links">
+    <% if tweet.user == current_user && tweet.user.present? %>
+      <%= link_to 'Edit', edit_tweet_path(tweet), class: 'tweet-edit' %>
+      <%= form_with(model: tweet, url: tweet_path(tweet), method: :delete, local: true) do %>
+        <%= submit_tag 'Delete', class: 'tweet-delete', data: { turbo_confirm: 'Are you sure you want to delete this tweet?' } %>
+      <% end %>
+    <% end %>
+  </div>
+</li>

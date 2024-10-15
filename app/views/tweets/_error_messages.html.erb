@@ -1,0 +1,9 @@
+<div class="tweet-error" role="alert">
+  <strong class="font-bold">Oops!</strong>
+  <span><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</span>
+  <ul>
+    <% @tweet.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>

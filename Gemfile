@@ -41,6 +41,8 @@ group :development, :test do
 
   gem "shoulda-matchers", "~> 6.0"
 
+   gem 'factory_bot_rails'
+
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
@@ -52,6 +54,10 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "annotate"
+end
+
+group :test do
+  gem 'rails-controller-testing'
 end
 
 gem "tailwindcss-rails", "~> 2.7"
