@@ -54,6 +54,10 @@ group :development do
   gem "annotate"
 end
 
+group :test do
+  gem "factory_bot_rails"
+end
+
 gem "tailwindcss-rails", "~> 2.7"
 
 gem "devise", "~> 4.9"
