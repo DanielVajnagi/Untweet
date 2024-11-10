@@ -1,19 +1,15 @@
-# spec/requests/tweets_controller_spec.rb
-
 require 'rails_helper'
 
 RSpec.describe "TweetsController", type: :request do
   let(:user) { create(:user) }
   let(:tweet) { create(:tweet, user: user) }
 
-  # Shared context for an authenticated user
   shared_context 'authenticated_user' do
     before do
       sign_in user
     end
   end
 
-  # Shared context for a tweet
   shared_context 'with_tweet' do
     let!(:tweet) { create(:tweet, user: user) }
   end
@@ -59,9 +55,7 @@ end
       let(:valid_params) { { tweet: { body: "Test tweet" } } }
 
       it "creates a new tweet" do
-        expect {
-          post tweets_path, params: valid_params
-        }.to change(Tweet, :count).by(1)
+        expect { post tweets_path, params: valid_params }.to change(Tweet, :count).by(1)
       end
 
       it "redirects to tweets index" do
@@ -74,9 +68,7 @@ end
       let(:invalid_params) { { tweet: { body: "" } } }
 
       it "does not create a new tweet" do
-        expect {
-          post tweets_path, params: invalid_params
-        }.not_to change(Tweet, :count)
+        expect { post tweets_path, params: invalid_params }.not_to change(Tweet, :count)
       end
 
       it "re-renders the index template" do
@@ -92,9 +84,7 @@ end
     include_context 'with_tweet'
 
     it "deletes the tweet" do
-      expect {
-        delete tweet_path(tweet)
-      }.to change(Tweet, :count).by(-1)
+      expect { delete tweet_path(tweet) }.to change(Tweet, :count).by(-1)
     end
 
     it "redirects to tweets index" do
