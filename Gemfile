@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 7.2.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use pg as the database for Active Record
@@ -56,8 +56,8 @@ group :development do
   gem "annotate"
 end
 
+gem "tailwindcss-rails", "~> 3.0"
 
-gem "tailwindcss-rails", "~> 2.7"
 
 gem "devise", "~> 4.9"
 gem "faker"
