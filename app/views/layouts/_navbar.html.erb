@@ -1,8 +1,6 @@
 <nav class="navbar">
   <div class="container">
-    <div class="title">
-      <%= link_to 'Home', root_path %>
-    </div>
+    <%= link_to 'Home', root_path, class: "title" %>
     <div>
       <% if user_signed_in? %>
         <span class="text-white">Welcome, <%= current_user.username %>!</span>

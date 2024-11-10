@@ -56,10 +56,8 @@ group :development do
   gem "annotate"
 end
 
-group :test do
-  gem "rails-controller-testing"
-end
 
 gem "tailwindcss-rails", "~> 2.7"
 
 gem "devise", "~> 4.9"
+gem "faker"

@@ -1,5 +1,4 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: [ :create, :destroy ]
 
   # GET /tweets
@@ -47,10 +46,9 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1
   def destroy
-    if @tweet.user == current_user
-      @tweet = Tweet.find(params[:id])
-      @tweet.destroy
+    @tweet = Tweet.find(params[:id])
 
+    if @tweet.user == current_user && @tweet.destroy
       redirect_to tweets_path, notice: "Tweet was successfully deleted."
     end
   end

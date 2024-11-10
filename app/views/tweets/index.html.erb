@@ -7,7 +7,5 @@
 <h2 class="tweet-header">Recent Tweets</h2>
 
 <ul class="tweet-list">
-  <% @tweets.each do |tweet| %>
-    <%= render 'tweets/tweet', tweet: tweet %>
-  <% end %>
+  <%= render partial: 'tweets/tweet', collection: @tweets, as: :tweet %>
 </ul>
