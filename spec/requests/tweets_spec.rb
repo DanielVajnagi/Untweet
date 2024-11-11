@@ -31,22 +31,24 @@ RSpec.describe "TweetsController", type: :request do
   end
 
   describe "GET #show" do
-  include_context 'with_tweet'
+    include_context 'with_tweet'
 
-  it "returns http success" do
-    get tweet_path(tweet.id), headers: { "ACCEPT" => "application/json" }
-    expect(response).to have_http_status(:success)
+    it "returns http success" do
+      get tweet_path(tweet.id), headers: { "ACCEPT" => "application/json" }
+      
+      expect(response).to have_http_status(:success)
+    end
   end
-end
 
-describe "GET #new" do
-  include_context 'authenticated_user'
+  describe "GET #new" do
+    include_context 'authenticated_user'
 
-  it "returns http success" do
-    get new_tweet_path, headers: { "ACCEPT" => "application/json" }
-    expect(response).to have_http_status(:success)
+    it "returns http success" do
+      get new_tweet_path, headers: { "ACCEPT" => "application/json" }
+
+      expect(response).to have_http_status(:success)
+    end
   end
-end
 
   describe "POST #create" do
     include_context 'authenticated_user'
@@ -60,6 +62,7 @@ end
 
       it "redirects to tweets index" do
         post tweets_path, params: valid_params
+
         expect(response).to redirect_to(tweets_path)
       end
     end
@@ -73,6 +76,7 @@ end
 
       it "re-renders the index template" do
         post tweets_path, params: invalid_params
+
         expect(response.body).to include("form")
         expect(response).to have_http_status(:ok)
       end
@@ -89,6 +93,7 @@ end
 
     it "redirects to tweets index" do
       delete tweet_path(tweet)
+      
       expect(response).to redirect_to(tweets_path)
     end
   end

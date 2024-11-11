@@ -10,7 +10,7 @@
   <% end %>
 </small>
   <div class="tweet-ud-links">
-    <% if tweet&.user&.id == current_user&.id %>
+    <% if tweet.author?(current_user) %>
       <%= link_to 'Edit', edit_tweet_path(tweet), class: 'tweet-edit' %>
       <%= form_with(model: tweet, url: tweet_path(tweet), method: :delete, local: true) do %>
       <%= button_to 'Delete', tweet_path(tweet), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this tweet?' }, class: 'tweet-delete' %>      <% end %>
