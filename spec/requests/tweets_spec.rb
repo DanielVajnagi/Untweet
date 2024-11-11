@@ -77,7 +77,6 @@ RSpec.describe "TweetsController", type: :request do
       it "re-renders the index template" do
         post tweets_path, params: invalid_params
 
-
         expect(response.body).to include("form")
         expect(response).to have_http_status(:ok)
       end
@@ -94,7 +93,7 @@ RSpec.describe "TweetsController", type: :request do
 
     it "redirects to tweets index" do
       delete tweet_path(tweet)
-      
+
       expect(response).to redirect_to(tweets_path)
     end
   end
