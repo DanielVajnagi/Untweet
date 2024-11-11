@@ -77,6 +77,7 @@ RSpec.describe "TweetsController", type: :request do
       it "re-renders the index template" do
         post tweets_path, params: invalid_params
 
+
         expect(response.body).to include("form")
         expect(response).to have_http_status(:ok)
       end
