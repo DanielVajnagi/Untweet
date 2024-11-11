@@ -35,7 +35,7 @@ RSpec.describe "TweetsController", type: :request do
 
     it "returns http success" do
       get tweet_path(tweet.id), headers: { "ACCEPT" => "application/json" }
-      
+
       expect(response).to have_http_status(:success)
     end
   end
