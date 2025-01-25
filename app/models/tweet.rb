@@ -18,4 +18,8 @@ class Tweet < ApplicationRecord
 
   validates :body, length: { maximum: 280 }, allow_nil: true
   validates :body, presence: true, unless: -> { origin.present? }
+
+  def author?(user)
+    self.user == user
+  end
 end

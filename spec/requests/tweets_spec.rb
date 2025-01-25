@@ -2,17 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "TweetsController", type: :request do
   let(:user) { create(:user) }
-  let(:tweet) { create(:tweet, user: user) }
+  let!(:tweet) { create(:tweet, user: user) }
 
-  shared_context 'authenticated_user' do
-    before do
-      sign_in user
-    end
-  end
-
-  shared_context 'with_tweet' do
-    let!(:tweet) { create(:tweet, user: user) }
-  end
+  include_context 'authenticated_user'
 
   describe "GET #index" do
   let!(:tweets) { create_list(:tweet, 3) }
@@ -31,8 +23,6 @@ RSpec.describe "TweetsController", type: :request do
   end
 
   describe "GET #show" do
-    include_context 'with_tweet'
-
     it "returns http success" do
       get tweet_path(tweet.id), headers: { "ACCEPT" => "application/json" }
 
@@ -85,7 +75,6 @@ RSpec.describe "TweetsController", type: :request do
 
   describe "DELETE #destroy" do
     include_context 'authenticated_user'
-    include_context 'with_tweet'
 
     it "deletes the tweet" do
       expect { delete tweet_path(tweet) }.to change(Tweet, :count).by(-1)
