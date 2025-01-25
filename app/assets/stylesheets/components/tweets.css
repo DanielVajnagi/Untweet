@@ -1,0 +1,76 @@
+@layer components{
+  .tweet-form-container {
+    @apply bg-white shadow-md rounded-lg p-4 mb-6 max-w-md mx-auto mt-6;
+  }
+
+  .tweet-error {
+    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4;
+  }
+
+  .tweet-label {
+    @apply block text-lg font-medium mb-2;
+  }
+
+  .tweet-textarea {
+    @apply w-full p-2 border border-gray-300 rounded-md mb-2 focus:outline-none focus:ring focus:ring-blue-500 h-32;
+  }
+
+  .tweet-submit {
+    @apply w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200;
+  }
+
+  .non-logged-in-message {
+    @apply bg-gray-100 shadow-md rounded-lg p-4 mb-6 max-w-md mx-auto text-center mt-6;
+  }
+
+  .login-button {
+    @apply bg-blue-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-blue-600 transition duration-200;
+  }
+
+  .signup-button {
+    @apply ml-2 bg-green-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 transition duration-200 text-lg;
+  }
+
+  .tweet-list {
+    @apply max-w-md mx-auto;
+  }
+
+  .tweet-item {
+    @apply bg-gray-100 p-3 mb-4 rounded-md shadow-md;
+  }
+
+  .tweet-username {
+    @apply font-semibold;
+  }
+
+  .tweet-time {
+    @apply text-gray-500;
+  }
+
+  .tweet-delete {
+    @apply text-red-500 hover:text-red-700 bg-transparent border-0 cursor-pointer;
+  }
+
+  .tweet-header {
+    @apply text-2xl font-semibold mb-4 text-center;
+  }
+
+  .tweet-body {
+    @apply whitespace-normal break-words;
+  }
+
+  .tweet-edit {
+    @apply text-blue-500 hover:underline;
+  }
+
+  .tweet-ud-links {
+    @apply mt-2;
+  }
+  .tweet-login-h {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  .tweet-login {
+    @apply mb-4;
+  }
+}
