@@ -19,6 +19,12 @@ class TweetsController < ApplicationController
   # GET /tweets/1/edit
   def edit
     @tweet = Tweet.find(params[:id])
+
+    # Only allow editing of original tweets
+    unless @tweet.is_original?
+      redirect_to tweets_path, alert: "You can only edit original tweets."
+      return
+    end
   end
 
   # POST /tweets
@@ -38,6 +44,12 @@ class TweetsController < ApplicationController
   def update
     @tweet = Tweet.find(params[:id])
 
+    # Only allow updating of original tweets
+    unless @tweet.is_original?
+      redirect_to tweets_path, alert: "You can only update original tweets."
+      return
+    end
+
     if @tweet.update(tweet_params)
       redirect_to root_path, notice: "Tweet was successfully updated."
     else
@@ -49,6 +61,12 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
 
+    # Only allow deletion of original tweets
+    unless @tweet.is_original?
+      redirect_to tweets_path, alert: "You can only delete original tweets."
+      return
+    end
+
     if @tweet.user == current_user && @tweet.destroy
       redirect_to tweets_path, notice: "Tweet was successfully deleted."
     end
@@ -56,9 +74,13 @@ class TweetsController < ApplicationController
 
   # POST /tweets/:id/retweet
   def retweet
-    original = Tweet.find(params[:id])
+    tweet_to_retweet = Tweet.find(params[:id])
 
-    retweet = current_user.tweets.build(origin: original)
+    # Find the original tweet to retweet
+    original_tweet = tweet_to_retweet.original_tweet
+
+    # Create a new retweet of the original tweet
+    retweet = current_user.tweets.build(origin: original_tweet)
 
     if retweet.save
       redirect_to tweets_path, notice: "Retweeted!"
@@ -70,6 +92,13 @@ class TweetsController < ApplicationController
   # GET /tweets/:id/new_quote
   def new_quote
     @original = Tweet.find(params[:id])
+
+    # Don't allow quoting of retweets or quotes
+    unless @original.is_original?
+      redirect_to tweets_path, alert: "You can only quote original tweets."
+      return
+    end
+
     @tweet = current_user.tweets.build(origin: @original)
     render :new
   end
@@ -77,6 +106,13 @@ class TweetsController < ApplicationController
   # POST /tweets/:id/create_quote
   def create_quote
     @original = Tweet.find(params[:id])
+
+    # Don't allow quoting of retweets or quotes
+    unless @original.is_original?
+      redirect_to tweets_path, alert: "You can only quote original tweets."
+      return
+    end
+
     @tweet = current_user.tweets.build(tweet_params)
     @tweet.origin = @original
 
@@ -86,7 +122,6 @@ class TweetsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
   def set_tweet

@@ -95,6 +95,10 @@
     @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap;
   }
 
+  .tweet-quote-body {
+    @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap mt-2 pt-2 border-t border-gray-200;
+  }
+
   .tweet-time {
     @apply text-gray-500 text-sm block mb-4;
   }
