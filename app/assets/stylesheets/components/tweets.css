@@ -105,7 +105,15 @@
   }
 
   .tweet-body {
-    @apply text-gray-800 text-base leading-relaxed mb-2 px-2;
+    @apply text-gray-800 mb-3 text-[15px] leading-5;
+  }
+
+  .tweet-link {
+    @apply block hover:bg-gray-50 rounded-lg transition-colors duration-200;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    margin: -12px;
   }
 
   .quote-tweet-content {
@@ -239,8 +247,6 @@
   .retweet-options {
     @apply absolute left-0 top-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 w-72 z-50;
   }
-
-
 
   .retweet-option {
     @apply block w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0;

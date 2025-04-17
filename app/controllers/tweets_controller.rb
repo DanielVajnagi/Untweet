@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
     # Only allow editing of original tweets
     unless @tweet.is_original?
       redirect_to tweets_path, alert: "You can only edit original tweets."
-      return
+      nil
     end
   end
 
