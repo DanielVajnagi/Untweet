@@ -93,11 +93,8 @@ class TweetsController < ApplicationController
   def new_quote
     @original = Tweet.find(params[:id])
 
-    # Don't allow quoting of retweets or quotes
-    unless @original.is_original?
-      redirect_to tweets_path, alert: "You can only quote original tweets."
-      return
-    end
+    # Get the original tweet if this is a retweet
+    @original = @original.original_tweet if @original.is_retweet?
 
     @tweet = current_user.tweets.build(origin: @original)
     render :new
@@ -107,14 +104,12 @@ class TweetsController < ApplicationController
   def create_quote
     @original = Tweet.find(params[:id])
 
-    # Don't allow quoting of retweets or quotes
-    unless @original.is_original?
-      redirect_to tweets_path, alert: "You can only quote original tweets."
-      return
-    end
+    # Get the original tweet if this is a retweet
+    @original = @original.original_tweet if @original.is_retweet?
 
     @tweet = current_user.tweets.build(tweet_params)
     @tweet.origin = @original
+    @tweet.user = current_user
 
     if @tweet.save
       redirect_to tweets_path, notice: "Quote tweet posted!"

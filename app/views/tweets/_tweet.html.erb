@@ -1,44 +1,61 @@
 <li class="tweet-item" data-controller="dropdown">
-  <% if tweet.is_retweet? || tweet.is_quote? %>
+  <% if tweet.is_retweet? %>
     <div class="tweet-retweet-banner">
       <span class="tweet-retweet-icon">↪</span>
       <span class="tweet-retweet-text">
-        <%= tweet.user.username %> <%= tweet.is_retweet? ? 'retweeted' : 'quoted' %> this
+        <%= tweet.user.username %> retweeted this <%= time_ago_in_words(tweet.created_at) %> ago
       </span>
     </div>
   <% end %>
 
   <div class="tweet-content">
     <div class="tweet-header-container">
-      <div class="tweet-username">
-        <% if tweet.is_retweet? || tweet.is_quote? %>
-          <%= tweet.original_tweet.user.username %>
-        <% else %>
-          <%= tweet.user.username %>
+      <div class="tweet-header-content">
+        <span class="tweet-author">
+          <% if tweet.is_retweet?%>
+            <%= tweet.original_tweet.user.username %>
+          <% else %>
+            <%= tweet.user.username %>
+          <% end %>
+        </span>
+        <span class="tweet-time">·
+          <% if tweet.is_retweet?%>
+            <%= time_ago_in_words(tweet.original_tweet.created_at) %>
+          <% else %>
+            <%= time_ago_in_words(tweet.created_at) %>
+          <% end %>
+          ago
+        </span>
+        <% if tweet.updated_at != tweet.created_at %>
+          <span class="tweet-edited">· edited</span>
         <% end %>
       </div>
     </div>
 
-    <p class="tweet-body">
-      <% if tweet.is_retweet? || tweet.is_quote? %>
-        <%= tweet.original_tweet.body %>
-      <% else %>
-        <%= tweet.body %>
-      <% end %>
-    </p>
-
     <% if tweet.is_quote? %>
-      <p class="tweet-quote-body">
-        <%= tweet.body %>
+      <div class="quote-tweet-content">
+        <p class="tweet-body">
+          <%= tweet.body %>
+        </p>
+      </div>
+      <%= link_to tweet_path(tweet.original_tweet), class: "original-tweet-container" do %>
+        <div class="original-tweet-header">
+          <span class="tweet-author"><%= tweet.original_tweet.user.username %></span>
+          <span class="tweet-time">· <%= time_ago_in_words(tweet.original_tweet.created_at) %> ago</span>
+        </div>
+        <p class="original-tweet-body">
+          <%= tweet.original_tweet.body %>
+        </p>
+      <% end %>
+    <% else %>
+      <p class="tweet-body">
+        <% if tweet.is_retweet? %>
+          <%= tweet.original_tweet.body %>
+        <% else %>
+          <%= tweet.body %>
+        <% end %>
       </p>
     <% end %>
-
-    <small class="tweet-time">
-      <%= l(tweet.created_at, format: :long) %>
-      <% if tweet.updated_at != tweet.created_at %>
-        (edited <%= l(tweet.updated_at, format: :long) %>)
-      <% end %>
-    </small>
 
     <div class="tweet-actions">
       <div class="tweet-action-button">

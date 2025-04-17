@@ -56,7 +56,7 @@
   }
 
   .tweet-list {
-    @apply max-w-md mx-auto;
+    @apply max-w-md mx-auto space-y-4 list-none p-0;
   }
 
   .tweets-page-container {
@@ -87,20 +87,52 @@
     @apply flex items-center justify-between mb-2;
   }
 
-  .tweet-username {
-    @apply font-semibold text-gray-800 text-lg;
+  .tweet-header-content {
+    @apply flex items-center text-[15px] whitespace-nowrap;
   }
 
-  .tweet-body {
-    @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap;
-  }
-
-  .tweet-quote-body {
-    @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap mt-2 pt-2 border-t border-gray-200;
+  .tweet-author {
+    font-weight: 700;
+    color: rgb(15, 20, 25);
   }
 
   .tweet-time {
-    @apply text-gray-500 text-sm block mb-4;
+    @apply text-gray-500 font-normal;
+  }
+
+  .tweet-edited {
+    @apply text-gray-500 font-normal;
+  }
+
+  .tweet-body {
+    @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap px-2;
+  }
+
+  .quote-tweet-content {
+    @apply mb-3;
+  }
+
+  .original-tweet-container {
+    @apply bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer;
+    border: 1px solid rgb(207, 217, 222) !important;
+    border-radius: 16px;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
+  }
+
+  .original-tweet-header {
+    @apply flex items-center gap-1 mb-2 text-[15px] whitespace-nowrap;
+  }
+
+  .original-tweet-author {
+    @apply text-gray-800 text-[15px];
+    font-weight: 700;
+  }
+
+  .original-tweet-body {
+    @apply text-gray-800 text-[15px] leading-normal;
+    padding: 0 2px;
   }
 
   .tweet-actions {

@@ -1,18 +1,30 @@
 <div class="tweet-form-container">
-  <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
-    <%= render 'tweets/error_messages' %>
-
-    <% if @tweet.origin.present? %>
+  <% if @tweet.origin.present? %>
+    <%= form_with model: @tweet, url: create_quote_tweet_path(@tweet.origin), local: true, class: 'tweet-form' do |form| %>
+      <%= render 'tweets/error_messages' %>
       <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
+
+      <div>
+        <%= form.label :body, 'Add a comment', class: 'tweet-label' %>
+        <%= form.text_area :body, placeholder: 'Share your thoughts on this tweet', class: 'tweet-textarea', maxlength: 280 %>
+      </div>
+
+      <div>
+        <%= form.submit 'Quote Tweet', class: 'tweet-submit' %>
+      </div>
     <% end %>
+  <% else %>
+    <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
+      <%= render 'tweets/error_messages' %>
 
-    <div>
-      <%= form.label :body, @tweet.origin.present? ? 'Add a comment' : 'What\'s happening?', class: 'tweet-label' %>
-      <%= form.text_area :body, placeholder: @tweet.origin.present? ? 'Share your thoughts on this tweet' : 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
-    </div>
+      <div>
+        <%= form.label :body, 'What\'s happening?', class: 'tweet-label' %>
+        <%= form.text_area :body, placeholder: 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
+      </div>
 
-    <div>
-      <%= form.submit @tweet.origin.present? ? 'Quote Tweet' : 'Tweet', class: 'tweet-submit' %>
-    </div>
+      <div>
+        <%= form.submit 'Tweet', class: 'tweet-submit' %>
+      </div>
+    <% end %>
   <% end %>
 </div>
