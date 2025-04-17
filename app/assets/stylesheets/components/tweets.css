@@ -40,7 +40,7 @@
   }
 
   .original-tweet-header {
-    @apply flex flex-col mb-2;
+    @apply flex items-start gap-1 mb-2 text-[15px] whitespace-nowrap;
   }
 
   .original-tweet-author {
@@ -105,7 +105,7 @@
   }
 
   .tweet-body {
-    @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap px-2;
+    @apply text-gray-800 text-base leading-relaxed mb-2 px-2;
   }
 
   .quote-tweet-content {
@@ -122,7 +122,7 @@
   }
 
   .original-tweet-header {
-    @apply flex items-center gap-1 mb-2 text-[15px] whitespace-nowrap;
+    @apply flex items-start gap-1 mb-2 text-[15px] whitespace-nowrap;
   }
 
   .original-tweet-author {
@@ -240,9 +240,7 @@
     @apply absolute left-0 top-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 w-72 z-50;
   }
 
-  .retweet-options.hidden {
-    @apply hidden;
-  }
+
 
   .retweet-option {
     @apply block w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0;
