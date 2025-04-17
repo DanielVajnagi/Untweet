@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, only: [ :create, :destroy ]
+  before_action :authenticate_user!, only: [ :create, :destroy, :retweet, :new_quote, :create_quote ]
 
   # GET /tweets
   def index
@@ -54,14 +54,46 @@ class TweetsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
+  # POST /tweets/:id/retweet
+  def retweet
+    original = Tweet.find(params[:id])
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:body)
+    retweet = current_user.tweets.build(origin: original)
+
+    if retweet.save
+      redirect_to tweets_path, notice: "Retweeted!"
+    else
+      redirect_to tweets_path, alert: "Retweet failed."
     end
+  end
+
+  # GET /tweets/:id/new_quote
+  def new_quote
+    @original = Tweet.find(params[:id])
+    @tweet = current_user.tweets.build(origin: @original)
+    render :new
+  end
+
+  # POST /tweets/:id/create_quote
+  def create_quote
+    @original = Tweet.find(params[:id])
+    @tweet = current_user.tweets.build(tweet_params)
+    @tweet.origin = @original
+
+    if @tweet.save
+      redirect_to tweets_path, notice: "Quote tweet posted!"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+
+  private
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def tweet_params
+    params.require(:tweet).permit(:body, :origin_id)
+  end
 end

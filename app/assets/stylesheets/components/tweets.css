@@ -1,76 +1,305 @@
 @layer components{
   .tweet-form-container {
-    @apply bg-white shadow-md rounded-lg p-4 mb-6 max-w-md mx-auto mt-6;
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto mt-6 border border-gray-100;
   }
 
   .tweet-error {
-    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4;
+    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4;
   }
 
   .tweet-label {
-    @apply block text-lg font-medium mb-2;
+    @apply block text-lg font-medium mb-2 text-gray-700;
   }
 
   .tweet-textarea {
-    @apply w-full p-2 border border-gray-300 rounded-md mb-2 focus:outline-none focus:ring focus:ring-blue-500 h-32;
+    @apply w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none transition-all duration-200;
   }
 
   .tweet-submit {
-    @apply w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200;
+    @apply w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
   }
 
   .non-logged-in-message {
-    @apply bg-gray-100 shadow-md rounded-lg p-4 mb-6 max-w-md mx-auto text-center mt-6;
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto text-center mt-6 border border-gray-100;
   }
 
   .login-button {
-    @apply bg-blue-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-blue-600 transition duration-200;
+    @apply bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
   }
 
   .signup-button {
-    @apply ml-2 bg-green-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 transition duration-200 text-lg;
+    @apply ml-2 bg-green-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-600 transition duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50;
+  }
+
+  .tweet-header {
+    @apply text-2xl font-semibold mb-4 text-center text-gray-800;
+  }
+
+  .original-tweet-container {
+    @apply bg-gray-50 p-4 mb-4 rounded-lg border border-gray-200;
+  }
+
+  .original-tweet-header {
+    @apply flex flex-col mb-2;
+  }
+
+  .original-tweet-author {
+    @apply font-semibold text-gray-800;
+  }
+
+  .original-tweet-time {
+    @apply text-gray-500 text-sm;
+  }
+
+  .original-tweet-body {
+    @apply text-gray-700;
   }
 
   .tweet-list {
     @apply max-w-md mx-auto;
   }
 
+  .tweets-page-container {
+    @apply max-w-2xl mx-auto px-4 py-6;
+  }
+
   .tweet-item {
-    @apply bg-gray-100 p-3 mb-4 rounded-md shadow-md;
+    @apply bg-white p-4 mb-4 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200 relative;
+  }
+
+  .tweet-retweet-banner {
+    @apply flex items-center text-gray-500 text-sm mb-2 pb-2 border-b border-gray-200 bg-gray-50 -mt-4 -mx-4 px-4 pt-2 rounded-t-lg;
+  }
+
+  .tweet-retweet-icon {
+    @apply mr-1;
+  }
+
+  .tweet-retweet-text {
+    @apply font-medium;
+  }
+
+  .tweet-content {
+    @apply relative;
+  }
+
+  .tweet-header-container {
+    @apply flex items-center justify-between mb-2;
   }
 
   .tweet-username {
-    @apply font-semibold;
-  }
-
-  .tweet-time {
-    @apply text-gray-500;
-  }
-
-  .tweet-delete {
-    @apply text-red-500 hover:text-red-700 bg-transparent border-0 cursor-pointer;
-  }
-
-  .tweet-header {
-    @apply text-2xl font-semibold mb-4 text-center;
+    @apply font-semibold text-gray-800 text-lg;
   }
 
   .tweet-body {
-    @apply whitespace-normal break-words;
+    @apply text-gray-800 text-base leading-relaxed mb-2 whitespace-pre-wrap;
   }
 
-  .tweet-edit {
-    @apply text-blue-500 hover:underline;
+  .tweet-time {
+    @apply text-gray-500 text-sm block mb-4;
+  }
+
+  .tweet-actions {
+    @apply flex items-center justify-start gap-6 mt-4 pt-3 border-t border-gray-100;
+  }
+
+  .tweet-action-button {
+    @apply relative;
+  }
+
+  .tweet-action {
+    @apply flex items-center gap-2 text-gray-600 hover:text-blue-500 transition-colors duration-200;
+  }
+
+  .tweet-action-icon {
+    @apply text-lg;
+  }
+
+  .tweet-action-count {
+    @apply text-sm font-medium;
+  }
+
+  .tweet-comment:hover {
+    @apply text-blue-500;
+  }
+
+  .tweet-retweet:hover {
+    @apply text-green-500;
+  }
+
+  .tweet-like:hover {
+    @apply text-red-500;
+  }
+
+  .tweet-edit:hover {
+    @apply text-yellow-500;
+  }
+
+  .tweet-delete:hover {
+    @apply text-red-500;
+  }
+
+  .tweet-retweet-info {
+    @apply text-gray-500 text-sm ml-2 flex items-center;
+  }
+
+  .tweet-retweet-info::before {
+    content: "↪";
+    @apply mr-1;
+  }
+
+  .tweet-original-author {
+    @apply text-blue-500 font-medium ml-1 hover:underline;
   }
 
   .tweet-ud-links {
-    @apply mt-2;
+    @apply flex items-center gap-3 mt-2;
   }
+
+  .tweet-action-wrapper {
+    @apply inline-block;
+  }
+
+  .tweet-retweet, .tweet-edit, .tweet-delete {
+    @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors duration-200;
+  }
+
+  .tweet-retweet {
+    @apply text-green-600;
+  }
+
+  .tweet-edit {
+    @apply text-gray-600;
+  }
+
+  .tweet-delete {
+    @apply text-red-600;
+  }
+
+  .quoted-tweet-container {
+    @apply bg-gray-50 p-3 mt-2 mb-2 rounded-md border border-gray-200 hover:bg-gray-100 transition-colors duration-200;
+  }
+
+  .quoted-tweet-header {
+    @apply flex flex-col mb-1;
+  }
+
+  .quoted-tweet-author {
+    @apply font-semibold text-gray-800 text-sm;
+  }
+
+  .quoted-tweet-body {
+    @apply text-gray-700 text-sm;
+  }
+
   .tweet-login-h {
     @apply text-xl font-semibold mb-2;
   }
 
   .tweet-login {
     @apply mb-4;
+  }
+
+  .retweet-options {
+    @apply absolute left-0 top-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 w-72 z-50;
+  }
+
+  .retweet-options.hidden {
+    @apply hidden;
+  }
+
+  .retweet-option {
+    @apply block w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0;
+  }
+
+  .retweet-option-icon {
+    @apply inline-block mr-3 text-gray-600;
+  }
+
+  .retweet-option-subtext {
+    @apply text-sm text-gray-500 mt-1 ml-7;
+  }
+
+  .share-menu {
+    display: none;
+    width: 144px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 4px;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 9999;
+  }
+
+  .share-menu.show {
+    display: block;
+    animation: fadeIn 0.1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .share-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #374151;
+    background-color: #f3f4f6;
+    transition: background-color 0.15s;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    margin: 0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .share-option:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .share-option:hover {
+    background-color: #e5e7eb;
+  }
+
+  .share-option:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .share-option:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .share-option-icon {
+    color: #4b5563;
+  }
+
+  .tweet-overlay,
+  .tweet-overlay[data-dropdown-target="menu"],
+  .tweet-overlay[data-dropdown-target="menu"].show,
+  .tweet-overlay-options,
+  .tweet-overlay-option,
+  .tweet-overlay-icon {
+    @apply hidden;
   }
 }
