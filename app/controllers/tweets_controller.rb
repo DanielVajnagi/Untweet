@@ -21,7 +21,7 @@ class TweetsController < ApplicationController
   def edit
     @tweet = Tweet.find(params[:id])
 
-    # Allow editing of original tweets and quoted tweets
+    # Only allow editing of original tweets and quoted tweets
     unless @tweet.is_original? || @tweet.is_quote?
       redirect_to tweets_path, alert: "You can only edit original tweets or quote tweets."
       return
@@ -36,8 +36,9 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to tweets_path, notice: "Tweet was successfully created."
     else
-      @tweets = Tweet.all
-      render :index
+      @tweets = Tweet.all.order(created_at: :desc)
+      flash.now[:alert] = "Failed to create tweet. Please check the errors below."
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -45,16 +46,17 @@ class TweetsController < ApplicationController
   def update
     @tweet = Tweet.find(params[:id])
 
-    # Allow updating of original tweets and quoted tweets
-    unless @tweet.is_original? || @tweet.is_quote?
-      redirect_to tweets_path, alert: "You can only update original tweets or quote tweets."
+    # Allow updating of original tweets, quoted tweets, and retweets
+    unless @tweet.is_original? || @tweet.is_quote? || @tweet.is_retweet?
+      redirect_to tweets_path, alert: "You can only update original tweets, quote tweets, or retweets."
       return
     end
 
     if @tweet.update(tweet_params)
       redirect_to tweets_path, notice: "Tweet was successfully updated."
     else
-      render :edit
+      flash.now[:alert] = "Failed to update tweet. Please check the errors below."
+      render :edit, status: :unprocessable_entity
     end
   end
 

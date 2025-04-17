@@ -98,11 +98,13 @@
     </div>
 
     <% if tweet.author?(current_user) %>
-      <div class="tweet-action-button">
-        <%= link_to edit_tweet_path(tweet), class: 'tweet-action tweet-edit', title: 'Edit Tweet' do %>
-          <span class="tweet-action-icon">✏️</span>
-        <% end %>
-      </div>
+      <% unless tweet.is_retweet? %>
+        <div class="tweet-action-button">
+          <%= link_to edit_tweet_path(tweet), class: 'tweet-action tweet-edit', title: 'Edit Tweet' do %>
+            <span class="tweet-action-icon">✏️</span>
+          <% end %>
+        </div>
+      <% end %>
 
       <div class="tweet-action-button">
         <%= button_to tweet_path(tweet), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'tweet-action tweet-delete', title: 'Delete Tweet' do %>

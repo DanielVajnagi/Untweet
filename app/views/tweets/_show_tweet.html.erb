@@ -1,13 +1,3 @@
-<li class="tweet-item" data-controller="dropdown">
-  <% if tweet.is_retweet? %>
-    <div class="tweet-retweet-banner">
-      <span class="tweet-retweet-icon">↪</span>
-      <span class="tweet-retweet-text">
-        <%= tweet.user.username %> retweeted this
-      </span>
-    </div>
-  <% end %>
-
   <div class="tweet-content">
     <div class="tweet-header-container">
       <div class="tweet-header-content">
@@ -18,9 +8,6 @@
             <%= tweet.user.username %>
           <% end %>
         </span>
-        <% if tweet.updated_at != tweet.created_at %>
-          <span class="tweet-edited">· edited</span>
-        <% end %>
       </div>
     </div>
 
@@ -37,7 +24,10 @@
     <% end %>
 
     <div class="tweet-full-time">
-      <span class="tweet-time-text text-gray-500">Created on: <%= tweet.created_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+      <div class="tweet-time-text text-gray-500">Created on: <%= tweet.created_at.strftime("%B %d, %Y at %I:%M %p") %></div>
+      <% if tweet.updated_at != tweet.created_at %>
+        <div class="tweet-time-text text-gray-500 mt-1">Edited on: <%= tweet.updated_at.strftime("%B %d, %Y at %I:%M %p") %></div>
+      <% end %>
     </div>
 
     <div class="tweet-actions">

@@ -1,6 +1,12 @@
 <div class="tweets-page-container">
   <h1 class="tweet-header">
-    <%= @tweet.origin.present? ? 'Edit Quote Tweet' : 'Edit Tweet' %>
+    <% if @tweet.is_retweet? %>
+      Edit Retweet
+    <% elsif @tweet.origin.present? %>
+      Edit Quote Tweet
+    <% else %>
+      Edit Tweet
+    <% end %>
   </h1>
 
   <% if flash[:alert].present? %>

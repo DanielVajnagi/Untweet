@@ -1,16 +1,16 @@
-<% if @tweet.errors.present? %>
-  <div class="tweet-error" role="alert" style="background-color: #fee2e2; border: 2px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-    <strong class="font-bold" style="color: #b91c1c;">Oops!</strong>
-    <span style="color: #b91c1c;"><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</span>
+<% if tweet.errors.present? %>
+  <div class="tweet-error" role="alert">
+    <strong class="font-bold">Oops!</strong>
+    <span><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</span>
     <ul class="list-disc pl-5 mt-2">
-      <% @tweet.errors.full_messages.each do |message| %>
-        <li class="text-red-700" style="color: #b91c1c;"><%= message %></li>
+      <% tweet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% else %>
-  <!-- Debug: No errors found on @tweet -->
+  <!-- Debug: No errors found on tweet -->
   <% if Rails.env.development? %>
-    <div style="display: none;">No errors found on @tweet</div>
+    <div style="display: none;">No errors found on tweet</div>
   <% end %>
 <% end %>
