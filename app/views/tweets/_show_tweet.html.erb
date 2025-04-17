@@ -3,7 +3,7 @@
     <div class="tweet-retweet-banner">
       <span class="tweet-retweet-icon">↪</span>
       <span class="tweet-retweet-text">
-        <%= tweet.user.username %> retweeted this <%= time_ago_in_words(tweet.created_at) %> ago
+        <%= tweet.user.username %> retweeted this
       </span>
     </div>
   <% end %>
@@ -17,14 +17,6 @@
           <% else %>
             <%= tweet.user.username %>
           <% end %>
-        </span>
-        <span class="tweet-time">·
-          <% if tweet.is_retweet?%>
-            <%= time_ago_in_words(tweet.original_tweet.created_at) %>
-          <% else %>
-            <%= time_ago_in_words(tweet.created_at) %>
-          <% end %>
-          ago
         </span>
         <% if tweet.updated_at != tweet.created_at %>
           <span class="tweet-edited">· edited</span>
@@ -43,6 +35,10 @@
         <% end %>
       </p>
     <% end %>
+
+    <div class="tweet-full-time">
+      <span class="tweet-time-text text-gray-500">Created on: <%= tweet.created_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+    </div>
 
     <div class="tweet-actions">
       <div class="tweet-action-button">
