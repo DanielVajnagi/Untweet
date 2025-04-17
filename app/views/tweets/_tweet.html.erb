@@ -1,19 +1,98 @@
-<li class="tweet-item">
-  <div class="tweet-username">
-    <%= tweet.user.present? ? tweet.user.username : "Deleted User" %>
-  </div>
-  <p class="tweet-body"><%= tweet.body %></p>
-  <small class="tweet-time">
-  Untweeted on <%= l(tweet.created_at, format: :long) %>
-  <% if tweet.updated_at != tweet.created_at %>
-    <br>Updated on <%= l(tweet.updated_at, format: :long) %>
+<li class="tweet-item" data-controller="dropdown">
+  <% if tweet.is_retweet? || tweet.is_quote? %>
+    <div class="tweet-retweet-banner">
+      <span class="tweet-retweet-icon">↪</span>
+      <span class="tweet-retweet-text">
+        <%= tweet.user.username %> <%= tweet.is_retweet? ? 'retweeted' : 'quoted' %> this
+      </span>
+    </div>
   <% end %>
-</small>
-  <div class="tweet-ud-links">
-    <% if tweet.author?(current_user) %>
-      <%= link_to 'Edit', edit_tweet_path(tweet), class: 'tweet-edit' %>
-      <%= form_with(model: tweet, url: tweet_path(tweet), method: :delete, local: true) do %>
-      <%= button_to 'Delete', tweet_path(tweet), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this tweet?' }, class: 'tweet-delete' %>      <% end %>
+
+  <div class="tweet-content">
+    <div class="tweet-header-container">
+      <div class="tweet-username">
+        <% if tweet.is_retweet? || tweet.is_quote? %>
+          <%= tweet.original_tweet.user.username %>
+        <% else %>
+          <%= tweet.user.username %>
+        <% end %>
+      </div>
+    </div>
+
+    <p class="tweet-body">
+      <% if tweet.is_retweet? || tweet.is_quote? %>
+        <%= tweet.original_tweet.body %>
+      <% else %>
+        <%= tweet.body %>
+      <% end %>
+    </p>
+
+    <% if tweet.is_quote? %>
+      <p class="tweet-quote-body">
+        <%= tweet.body %>
+      </p>
     <% end %>
+
+    <small class="tweet-time">
+      <%= l(tweet.created_at, format: :long) %>
+      <% if tweet.updated_at != tweet.created_at %>
+        (edited <%= l(tweet.updated_at, format: :long) %>)
+      <% end %>
+    </small>
+
+    <div class="tweet-actions">
+      <div class="tweet-action-button">
+        <%= button_to "#", method: :post, class: 'tweet-action tweet-comment', title: 'Comment' do %>
+          <span class="tweet-action-icon">💬</span>
+          <span class="tweet-action-count">12</span>
+        <% end %>
+      </div>
+
+      <div class="tweet-action-button" data-dropdown-target="container">
+        <button type="button"
+                class="tweet-action tweet-retweet"
+                data-action="click->dropdown#toggle"
+                title="Retweet">
+          <span class="tweet-action-icon">↪</span>
+          <span class="tweet-action-count"><%= tweet.original_tweet.retweet_count %></span>
+        </button>
+
+        <div class="share-menu" data-dropdown-target="menu">
+          <%= link_to retweet_tweet_path(tweet),
+              class: "share-option",
+              data: { "turbo-method": :post } do %>
+            <span class="share-option-icon">↪</span>
+            Retweet
+          <% end %>
+
+          <%= link_to new_quote_tweet_path(tweet),
+              class: "share-option" do %>
+            <span class="share-option-icon">💭</span>
+            Quote
+          <% end %>
+        </div>
+      </div>
+
+      <div class="tweet-action-button">
+        <%= button_to "#", method: :post, class: 'tweet-action tweet-like', title: 'Like' do %>
+          <span class="tweet-action-icon">❤️</span>
+          <span class="tweet-action-count">0</span>
+        <% end %>
+      </div>
+
+      <% if tweet.author?(current_user) %>
+        <div class="tweet-action-button">
+          <%= link_to edit_tweet_path(tweet), class: 'tweet-action tweet-edit', title: 'Edit Tweet' do %>
+            <span class="tweet-action-icon">✏️</span>
+          <% end %>
+        </div>
+
+        <div class="tweet-action-button">
+          <%= button_to tweet_path(tweet), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'tweet-action tweet-delete', title: 'Delete Tweet' do %>
+            <span class="tweet-action-icon">🗑️</span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </li>

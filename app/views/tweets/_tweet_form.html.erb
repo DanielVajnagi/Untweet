@@ -2,13 +2,17 @@
   <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
     <%= render 'tweets/error_messages' %>
 
+    <% if @tweet.origin.present? %>
+      <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
+    <% end %>
+
     <div>
-      <%= form.label :body, 'What’s happening?', class: 'tweet-label' %>
-      <%= form.text_area :body, placeholder: 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
+      <%= form.label :body, @tweet.origin.present? ? 'Add a comment' : 'What\'s happening?', class: 'tweet-label' %>
+      <%= form.text_area :body, placeholder: @tweet.origin.present? ? 'Share your thoughts on this tweet' : 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
     </div>
 
     <div>
-      <%= form.submit 'Tweet', class: 'tweet-submit' %>
+      <%= form.submit @tweet.origin.present? ? 'Quote Tweet' : 'Tweet', class: 'tweet-submit' %>
     </div>
   <% end %>
 </div>
