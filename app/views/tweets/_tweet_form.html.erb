@@ -1,6 +1,11 @@
 <div class="tweet-form-container">
+  <!-- Debug: Form rendering -->
+  <% if Rails.env.development? %>
+    <div style="display: none;">Rendering tweet form</div>
+  <% end %>
+
   <% if @tweet.origin.present? %>
-    <%= form_with model: @tweet, url: create_quote_tweet_path(@tweet.origin), local: true, class: 'tweet-form' do |form| %>
+    <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
       <%= render 'tweets/error_messages' %>
       <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
 
@@ -10,7 +15,7 @@
       </div>
 
       <div>
-        <%= form.submit 'Quote Tweet', class: 'tweet-submit' %>
+        <%= form.submit @tweet.new_record? ? 'Quote Tweet' : 'Update Quote', class: 'tweet-submit' %>
       </div>
     <% end %>
   <% else %>
@@ -23,7 +28,7 @@
       </div>
 
       <div>
-        <%= form.submit 'Tweet', class: 'tweet-submit' %>
+        <%= form.submit @tweet.new_record? ? 'Tweet' : 'Update Tweet', class: 'tweet-submit' %>
       </div>
     <% end %>
   <% end %>
