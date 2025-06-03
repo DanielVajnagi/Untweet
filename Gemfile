@@ -41,6 +41,8 @@ group :development, :test do
 
   gem "shoulda-matchers", "~> 6.0"
 
+   gem "factory_bot_rails"
+
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
@@ -54,10 +56,8 @@ group :development do
   gem "annotate"
 end
 
-group :test do
-  gem "factory_bot_rails"
-end
-
 gem "tailwindcss-rails", "~> 3.0"
 
+
 gem "devise", "~> 4.9"
+gem "faker"

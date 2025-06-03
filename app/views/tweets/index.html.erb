@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <%= render 'tweets/tweet_form' %>
+<% else %>
+  <%= render 'tweets/non_authorized_message' %>
+<% end %>
+
+<h2 class="tweet-header">Recent Tweets</h2>
+
+<ul class="tweet-list">
+  <%= render partial: 'tweets/tweet', collection: @tweets, as: :tweet %>
+</ul>
