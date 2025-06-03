@@ -1,0 +1,14 @@
+<div class="quote-tweet-content">
+  <p class="tweet-body">
+    <%= tweet.body %>
+  </p>
+</div>
+<%= link_to tweet_path(tweet.original_tweet), class: "original-tweet-container" do %>
+  <div class="original-tweet-header">
+    <span class="tweet-author"><%= tweet.original_tweet.user.username %></span>
+    <span class="tweet-time">· <%= time_ago_in_words(tweet.original_tweet.created_at) %> ago</span>
+  </div>
+  <p class="original-tweet-body">
+    <%= tweet.original_tweet.body %>
+  </p>
+<% end %>

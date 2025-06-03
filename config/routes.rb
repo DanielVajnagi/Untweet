@@ -16,5 +16,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "tweets#index"
 
-  resources :tweets
+  resources :tweets do
+    member do
+      post :retweet
+      get  :new_quote
+      post :create_quote
+    end
+  end
+
 end

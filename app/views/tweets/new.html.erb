@@ -1,12 +1,6 @@
 <div class="tweets-page-container">
   <h1 class="tweet-header">
-    <% if @tweet.is_retweet? %>
-      Edit Retweet
-    <% elsif @tweet.origin.present? %>
-      Edit Quote Tweet
-    <% else %>
-      Edit Tweet
-    <% end %>
+    <%= @tweet.origin.present? ? 'Quote Tweet' : 'New Tweet' %>
   </h1>
 
   <% if flash[:alert].present? %>
@@ -16,10 +10,19 @@
     </div>
   <% end %>
 
+  <!-- Debug: Tweet object info -->
+  <% if Rails.env.development? %>
+    <div style="display: none;">
+      Tweet ID: <%= @tweet.id || 'new' %><br>
+      Tweet has errors: <%= @tweet.errors.present? %><br>
+      Error count: <%= @tweet.errors.count %><br>
+      Error messages: <%= @tweet.errors.full_messages.join(', ') %>
+    </div>
+  <% end %>
+
   <%= render 'tweets/tweet_form' %>
 
   <div class="mt-4">
     <%= link_to 'Back to Tweets', tweets_path, class: 'text-blue-500 hover:text-blue-700' %>
   </div>
 </div>
-

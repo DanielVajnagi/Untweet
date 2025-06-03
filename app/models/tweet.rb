@@ -22,4 +22,38 @@ class Tweet < ApplicationRecord
   def author?(user)
     self.user == user
   end
+  
+  def is_original?
+    origin.nil?
+  end
+
+  def is_retweet?
+    origin.present? && body.nil?
+  end
+
+  def is_quote?
+    origin.present? && body.present?
+  end
+
+  def retweet_count
+    # Count direct retweets
+    direct_retweets = retweets.count
+
+    # If this is a retweet, add 1 to count this retweet itself
+    if is_retweet?
+      direct_retweets + 1
+    else
+      direct_retweets
+    end
+  end
+
+  def original_tweet
+    return self if is_original?
+
+    original = origin
+    while original.is_retweet?
+      original = original.origin
+    end
+    original
+  end
 end
