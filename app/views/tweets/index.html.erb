@@ -5,7 +5,7 @@
     <%= render 'tweets/non_authorized_message' %>
   <% end %>
 
-  <h2 class="tweet-header">Recent Tweets</h2>
+  <h2 class="tweet-header"><%= t('tweets.recent_tweets') %></h2>
 
   <ul class="tweet-list">
     <%= render partial: 'tweets/tweet', collection: @tweets, as: :tweet %>
