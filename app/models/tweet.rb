@@ -22,7 +22,7 @@ class Tweet < ApplicationRecord
   def author?(user)
     self.user == user
   end
-
+  
   def is_original?
     origin.nil?
   end
