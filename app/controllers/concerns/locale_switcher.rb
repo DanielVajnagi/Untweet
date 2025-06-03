@@ -20,10 +20,10 @@ module LocaleSwitcher
     Rails.logger.debug "Current locale before setting: #{I18n.locale}"
 
     # Store the current path for redirection
-    @current_path = request.fullpath.gsub(/^\/#{extracted_locale}/, '') if extracted_locale
+    @current_path = request.fullpath.gsub(/^\/#{extracted_locale}/, "") if extracted_locale
 
     # Redirect to default locale if no locale specified
-    if extracted_locale.nil? && request.path == '/'
+    if extracted_locale.nil? && request.path == "/"
       Rails.logger.debug "Redirecting to default locale: #{I18n.default_locale}"
       redirect_to "/#{I18n.default_locale}"
     end

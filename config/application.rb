@@ -13,7 +13,7 @@ module Threads
     config.active_record.default_timezone = :local
 
     # I18n configuration
-    config.i18n.available_locales = [:en, :uk]
+    config.i18n.available_locales = [ :en, :uk ]
     config.i18n.default_locale = :uk
     config.i18n.fallbacks = true
 

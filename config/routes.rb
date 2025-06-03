@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   end
 
   # Redirect root to default locale
-  get '/', to: redirect("/#{I18n.default_locale}")
+  get "/", to: redirect("/#{I18n.default_locale}")
 end
