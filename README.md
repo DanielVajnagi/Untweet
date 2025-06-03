@@ -1,25 +1,24 @@
-# Untweet 🐦
+# README
 
-Untweet is a simple Twitter clone built with Ruby on Rails
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-## 🔧 Tech Stack
+Things you may want to cover:
 
-- Ruby 3.3.4
-- Rails 7.2.2
-- PostgreSQL
-- Devise (authentication)
-- TailwindCSS
-- Turbo + Stimulus (Hotwire)
-- Importmap
-- RSpec + FactoryBot + Shoulda Matchers
-- Pretender (admin impersonation)
-- Chewy + Elasticsearch (search)
+* Ruby version
 
-## ⚙️ Setup
+* System dependencies
 
-```bash
-git clone https://github.com/DanielVajnagi/Untweet.git
-cd untweet
-bundle install
-rails db:create db:migrate db:seed
-bin/dev
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

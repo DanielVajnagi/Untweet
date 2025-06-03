@@ -24,9 +24,9 @@
     <% end %>
 
     <div class="tweet-full-time">
-      <div class="tweet-time-text text-gray-500"><%= t('tweets.created_on', time: l(tweet.created_at, format: :long)) %></div>
+      <div class="tweet-time-text text-gray-500">Created on: <%= tweet.created_at.strftime("%B %d, %Y at %I:%M %p") %></div>
       <% if tweet.updated_at != tweet.created_at %>
-        <div class="tweet-time-text text-gray-500 mt-1"><%= t('tweets.edited_on', time: l(tweet.updated_at, format: :long)) %></div>
+        <div class="tweet-time-text text-gray-500 mt-1">Edited on: <%= tweet.updated_at.strftime("%B %d, %Y at %I:%M %p") %></div>
       <% end %>
     </div>
 
