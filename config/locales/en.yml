@@ -28,4 +28,156 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  # Common
+  hello: "Hello"
+  welcome: "Welcome"
+  save: "Save"
+  cancel: "Cancel"
+  edit: "Edit"
+  delete: "Delete"
+  back: "Back"
+  submit: "Submit"
+
+  # Navigation
+  home: "Home"
+  profile: "Profile"
+  settings: "Settings"
+  logout: "Logout"
+  login: "Login"
+  signup: "Sign Up"
+  edit_profile: "Edit Profile"
+  welcome_user: "Welcome, %{username}!"
+
+  # Messages
+  success: "Success"
+  error: "Error"
+  notice: "Notice"
+  warning: "Warning"
+
+  # Forms
+  email: "Email"
+  username: "Username"
+  password: "Password"
+  confirm_password: "Confirm Password"
+  remember_me: "Remember me"
+  forgot_password: "Forgot password?"
+
+  # Errors
+  required: "is required"
+  invalid: "is invalid"
+  too_short: "is too short"
+  too_long: "is too long"
+
+  # Time
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "about 1 hour"
+        other: "about %{count} hours"
+      about_x_months:
+        one: "about 1 month"
+        other: "about %{count} months"
+      about_x_years:
+        one: "about 1 year"
+        other: "about %{count} years"
+      almost_x_years:
+        one: "almost 1 year"
+        other: "almost %{count} years"
+      half_a_minute: "half a minute"
+      less_than_x_minutes:
+        one: "less than 1 minute"
+        other: "less than %{count} minutes"
+      less_than_x_seconds:
+        one: "less than 1 second"
+        other: "less than %{count} seconds"
+      over_x_years:
+        one: "over 1 year"
+        other: "over %{count} years"
+      x_days:
+        one: "1 day"
+        other: "%{count} days"
+      x_minutes:
+        one: "1 minute"
+        other: "%{count} minutes"
+      x_months:
+        one: "1 month"
+        other: "%{count} months"
+      x_seconds:
+        one: "1 second"
+        other: "%{count} seconds"
+    formats:
+      default: "%B %d, %Y at %I:%M %p"
+      short: "%b %d, %Y"
+      long: "%B %d, %Y at %I:%M %p"
+
+  # Tweets
+  tweets:
+    new: "New Tweet"
+    edit: "Edit Tweet"
+    show: "Tweet Details"
+    index: "All Tweets"
+    content: "What's happening?"
+    post: "Post"
+    update: "Update Tweet"
+    retweet: "Retweet"
+    quote: "Quote Tweet"
+    update_quote: "Update Quote"
+    delete: "Delete Tweet"
+    confirm_delete: "Are you sure you want to delete this tweet?"
+    no_tweets: "No tweets yet"
+    retweeted_by: "retweeted this"
+    quoted_by: "Quoted by"
+    reply: "Reply"
+    replies: "Replies"
+    likes: "Likes"
+    retweets: "Retweets"
+    quotes: "Quotes"
+    views: "Views"
+    time_ago: "%{time} ago"
+    not_authorized: "You are not authorized to perform this action"
+    add_comment: "Add a comment"
+    add_comment_retweet: "Add a comment to your retweet"
+    share_thoughts: "Share your thoughts"
+    edited: "edited"
+    like: "Like"
+    please_login: "Please log in to share your thoughts!"
+    join_conversation: "Join the conversation and connect with others."
+    error_messages:
+      header:
+        one: "1 error prohibited this tweet from being saved:"
+        other: "%{count} errors prohibited this tweet from being saved:"
+    created: "Tweet was successfully created."
+    updated: "Tweet was successfully updated."
+    deleted: "Tweet was successfully deleted."
+    retweeted: "Retweeted!"
+    quoted: "Quote tweet posted!"
+    create_error: "Failed to create tweet. Please check the errors below."
+    update_error: "Failed to update tweet. Please check the errors below."
+    retweet_error: "Retweet failed."
+    quote_error: "There was an error creating your quote tweet."
+    back_to_tweets: "Back to Tweets"
+    recent_tweets: "Recent Tweets"
+    created_on: "Created on: %{time}"
+    edited_on: "Edited on: %{time}"
+    edit_retweet: "Edit Retweet"
+    edit_quote_tweet: "Edit Quote Tweet"
+
+  # Devise Shared
+  devise:
+    shared:
+      minimum_password_length: "%{count} characters minimum"
+      already_have_account: "Already have an account?"
+      dont_have_account: "Don't have an account?"
+      forgot_password: "Forgot your password?"
+      didnt_receive_confirmation: "Didn't receive confirmation instructions?"
+      didnt_receive_unlock: "Didn't receive unlock instructions?"
+      sign_in_with: "Sign in with %{provider}"
+    registrations:
+      edit:
+        title: "Edit %{resource}"
+        password_blank: "(leave blank if you don't want to change it)"
+        password_minimum: "%{count} characters minimum"
+        current_password: "(we need your current password to confirm your changes)"
+        update: "Update"
+        delete_account: "Delete my account"
+        delete_confirm: "Are you sure?"

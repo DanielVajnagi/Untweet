@@ -23,7 +23,7 @@ class TweetsController < ApplicationController
 
     # Only allow editing of original tweets and quoted tweets
     unless @tweet.is_original? || @tweet.is_quote?
-      redirect_to tweets_path, alert: "You can only edit original tweets or quote tweets."
+      redirect_to tweets_path, alert: t("tweets.not_authorized")
       nil
     end
   end
@@ -34,10 +34,10 @@ class TweetsController < ApplicationController
     @tweet.user = current_user
 
     if @tweet.save
-      redirect_to tweets_path, notice: "Tweet was successfully created."
+      redirect_to tweets_path, notice: t("tweets.created")
     else
       @tweets = Tweet.all.order(created_at: :desc)
-      flash.now[:alert] = "Failed to create tweet. Please check the errors below."
+      flash.now[:alert] = t("tweets.create_error")
       render :index, status: :unprocessable_entity
     end
   end
@@ -48,14 +48,14 @@ class TweetsController < ApplicationController
 
     # Allow updating of original tweets, quoted tweets, and retweets
     unless @tweet.is_original? || @tweet.is_quote? || @tweet.is_retweet?
-      redirect_to tweets_path, alert: "You can only update original tweets, quote tweets, or retweets."
+      redirect_to tweets_path, alert: t("tweets.not_authorized")
       return
     end
 
     if @tweet.update(tweet_params)
-      redirect_to tweets_path, notice: "Tweet was successfully updated."
+      redirect_to tweets_path, notice: t("tweets.updated")
     else
-      flash.now[:alert] = "Failed to update tweet. Please check the errors below."
+      flash.now[:alert] = t("tweets.update_error")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -66,12 +66,12 @@ class TweetsController < ApplicationController
 
     # Only allow deletion of original tweets
     unless @tweet.is_original?
-      redirect_to tweets_path, alert: "You can only delete original tweets."
+      redirect_to tweets_path, alert: t("tweets.not_authorized")
       return
     end
 
     if @tweet.user == current_user && @tweet.destroy
-      redirect_to tweets_path, notice: "Tweet was successfully deleted."
+      redirect_to tweets_path, notice: t("tweets.deleted")
     end
   end
 
@@ -86,9 +86,9 @@ class TweetsController < ApplicationController
     retweet = current_user.tweets.build(origin: original_tweet)
 
     if retweet.save
-      redirect_to tweets_path, notice: "Retweeted!"
+      redirect_to tweets_path, notice: t("tweets.retweeted")
     else
-      redirect_to tweets_path, alert: "Retweet failed."
+      redirect_to tweets_path, alert: t("tweets.retweet_error")
     end
   end
 
@@ -115,14 +115,14 @@ class TweetsController < ApplicationController
     @tweet.user = current_user
 
     if @tweet.save
-      redirect_to tweets_path, notice: "Quote tweet posted!"
+      redirect_to tweets_path, notice: t("tweets.quoted")
     else
       # Add a specific error if none are present
       if @tweet.errors.empty?
-        @tweet.errors.add(:base, "There was an error creating your quote tweet.")
+        @tweet.errors.add(:base, t("tweets.quote_error"))
       end
 
-      flash.now[:alert] = "There was an error creating your quote tweet."
+      flash.now[:alert] = t("tweets.quote_error")
       render :new, status: :unprocessable_entity
     end
   end

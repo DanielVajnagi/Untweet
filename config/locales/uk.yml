@@ -1,0 +1,174 @@
+uk:
+  # Common
+  hello: "Привіт"
+  welcome: "Ласкаво просимо"
+  save: "Зберегти"
+  cancel: "Скасувати"
+  edit: "Редагувати"
+  delete: "Видалити"
+  back: "Назад"
+  submit: "Відправити"
+
+  # Navigation
+  home: "Головна"
+  profile: "Профіль"
+  settings: "Налаштування"
+  logout: "Вийти"
+  login: "Увійти"
+  signup: "Зареєструватися"
+  edit_profile: "Редагувати профіль"
+  welcome_user: "Ласкаво просимо, %{username}!"
+
+  # Messages
+  success: "Успішно"
+  error: "Помилка"
+  notice: "Повідомлення"
+  warning: "Попередження"
+
+  # Forms
+  email: "Електронна пошта"
+  username: "Ім'я користувача"
+  password: "Пароль"
+  confirm_password: "Підтвердження паролю"
+  remember_me: "Запам'ятати мене"
+  forgot_password: "Забули пароль?"
+
+  # Errors
+  required: "обов'язкове поле"
+  invalid: "некоректне значення"
+  too_short: "занадто коротке"
+  too_long: "занадто довге"
+
+  # Date and Time
+  date:
+    month_names: [~, січня, лютого, березня, квітня, травня, червня, липня, серпня, вересня, жовтня, листопада, грудня]
+    abbr_month_names: [~, січ, лют, бер, кві, тра, чер, лип, сер, вер, жов, лис, гру]
+    day_names: [неділя, понеділок, вівторок, середа, четвер, п'ятниця, субота]
+    abbr_day_names: [нд, пн, вт, ср, чт, пт, сб]
+    formats:
+      default: "%d %B %Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+    order:
+      - :day
+      - :month
+      - :year
+
+  # Time
+  time:
+    formats:
+      default: "%d %B %Y о %H:%M"
+      short: "%d %b %Y"
+      long: "%d %B %Y о %H:%M"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "близько 1 години"
+        other: "близько %{count} годин"
+      about_x_months:
+        one: "близько 1 місяця"
+        other: "близько %{count} місяців"
+      about_x_years:
+        one: "близько 1 року"
+        other: "близько %{count} років"
+      almost_x_years:
+        one: "майже 1 рік"
+        other: "майже %{count} років"
+      half_a_minute: "півхвилини"
+      less_than_x_minutes:
+        one: "менше 1 хвилини"
+        other: "менше %{count} хвилин"
+      less_than_x_seconds:
+        one: "менше 1 секунди"
+        other: "менше %{count} секунд"
+      over_x_years:
+        one: "більше 1 року"
+        other: "більше %{count} років"
+      x_days:
+        one: "1 день"
+        other: "%{count} днів"
+      x_minutes:
+        one: "1 хвилина"
+        other: "%{count} хвилин"
+      x_months:
+        one: "1 місяць"
+        other: "%{count} місяців"
+      x_seconds:
+        one: "1 секунда"
+        other: "%{count} секунд"
+    formats:
+      default: "%d %B %Y о %H:%M"
+      short: "%d %b %Y"
+      long: "%d %B %Y о %H:%M"
+
+  # Tweets
+  tweets:
+    new: "Новий твіт"
+    edit: "Редагувати твіт"
+    show: "Деталі твіту"
+    index: "Всі твіти"
+    content: "Що відбувається?"
+    post: "Опублікувати"
+    update: "Оновити твіт"
+    retweet: "Ретвіт"
+    quote: "Цитувати твіт"
+    update_quote: "Оновити цитату"
+    delete: "Видалити твіт"
+    confirm_delete: "Ви впевнені, що хочете видалити цей твіт?"
+    no_tweets: "Поки немає твітів"
+    retweeted_by: "ретвітнув це"
+    quoted_by: "Процитував"
+    reply: "Відповісти"
+    replies: "Відповіді"
+    likes: "Вподобайки"
+    retweets: "Ретвіти"
+    quotes: "Цитування"
+    views: "Перегляди"
+    time_ago: "%{time} тому"
+    not_authorized: "У вас немає прав для виконання цієї дії"
+    add_comment: "Додати коментар"
+    add_comment_retweet: "Додати коментар до ретвіту"
+    share_thoughts: "Поділіться своїми думками"
+    edited: "відредаговано"
+    like: "Вподобати"
+    please_login: "Будь ласка, увійдіть, щоб поділитися своїми думками!"
+    join_conversation: "Приєднуйтеся до розмови та спілкуйтеся з іншими."
+    error_messages:
+      header:
+        one: "1 помилка завадила збереженню твіту:"
+        other: "%{count} помилок завадили збереженню твіту:"
+    created: "Твіт успішно створено."
+    updated: "Твіт успішно оновлено."
+    deleted: "Твіт успішно видалено."
+    retweeted: "Ретвітнуто!"
+    quoted: "Цитату опубліковано!"
+    create_error: "Не вдалося створити твіт. Перевірте помилки нижче."
+    update_error: "Не вдалося оновити твіт. Перевірте помилки нижче."
+    retweet_error: "Не вдалося ретвітнути."
+    quote_error: "Виникла помилка при створенні цитати."
+    back_to_tweets: "Повернутися до твітів"
+    recent_tweets: "Останні твіти"
+    created_on: "Створено: %{time}"
+    edited_on: "Відредаговано: %{time}"
+    edit_retweet: "Редагувати ретвіт"
+    edit_quote_tweet: "Редагувати цитату"
+
+  # Devise Shared
+  devise:
+    shared:
+      minimum_password_length: "мінімум %{count} символів"
+      already_have_account: "Вже маєте обліковий запис?"
+      dont_have_account: "Немає облікового запису?"
+      forgot_password: "Забули пароль?"
+      didnt_receive_confirmation: "Не отримали інструкції для підтвердження?"
+      didnt_receive_unlock: "Не отримали інструкції для розблокування?"
+      sign_in_with: "Увійти через %{provider}"
+    registrations:
+      edit:
+        title: "Редагувати %{resource}"
+        password_blank: "(залиште порожнім, якщо не хочете змінювати)"
+        password_minimum: "мінімум %{count} символів"
+        current_password: "(нам потрібен ваш поточний пароль для підтвердження змін)"
+        update: "Оновити"
+        delete_account: "Видалити мій обліковий запис"
+        delete_confirm: "Ви впевнені?"
