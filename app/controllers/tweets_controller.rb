@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
     # Only allow editing of original tweets and quoted tweets
     unless @tweet.is_original? || @tweet.is_quote?
       redirect_to tweets_path, alert: "You can only edit original tweets or quote tweets."
-      return
+      nil
     end
   end
 
