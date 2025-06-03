@@ -48,7 +48,12 @@
   }
 
   .original-tweet-container {
-    @apply bg-gray-50 p-4 mb-4 rounded-lg border border-gray-200;
+    @apply bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer;
+    border: 1px solid rgb(207, 217, 222) !important;
+    border-radius: 16px;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
   }
 
   .original-tweet-header {
@@ -56,7 +61,8 @@
   }
 
   .original-tweet-author {
-    @apply font-semibold text-gray-800;
+    @apply text-gray-800 text-[15px];
+    font-weight: 700;
   }
 
   .original-tweet-time {
@@ -64,7 +70,8 @@
   }
 
   .original-tweet-body {
-    @apply text-gray-700;
+    @apply text-gray-800 text-[15px] leading-normal;
+    padding: 0 2px;
   }
 
   .tweet-list {
@@ -132,29 +139,6 @@
     @apply mb-3;
   }
 
-  .original-tweet-container {
-    @apply bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer;
-    border: 1px solid rgb(207, 217, 222) !important;
-    border-radius: 16px;
-    padding: 12px;
-    display: block;
-    text-decoration: none;
-  }
-
-  .original-tweet-header {
-    @apply flex items-start gap-1 mb-2 text-[15px] whitespace-nowrap;
-  }
-
-  .original-tweet-author {
-    @apply text-gray-800 text-[15px];
-    font-weight: 700;
-  }
-
-  .original-tweet-body {
-    @apply text-gray-800 text-[15px] leading-normal;
-    padding: 0 2px;
-  }
-
   .tweet-actions {
     @apply flex items-center justify-start gap-6 mt-4 pt-3 border-t border-gray-100;
   }
@@ -208,14 +192,6 @@
     @apply text-blue-500 font-medium ml-1 hover:underline;
   }
 
-  .tweet-ud-links {
-    @apply flex items-center gap-3 mt-2;
-  }
-
-  .tweet-action-wrapper {
-    @apply inline-block;
-  }
-
   .tweet-retweet, .tweet-edit, .tweet-delete {
     @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors duration-200;
   }
@@ -232,44 +208,12 @@
     @apply text-red-600;
   }
 
-  .quoted-tweet-container {
-    @apply bg-gray-50 p-3 mt-2 mb-2 rounded-md border border-gray-200 hover:bg-gray-100 transition-colors duration-200;
-  }
-
-  .quoted-tweet-header {
-    @apply flex flex-col mb-1;
-  }
-
-  .quoted-tweet-author {
-    @apply font-semibold text-gray-800 text-sm;
-  }
-
-  .quoted-tweet-body {
-    @apply text-gray-700 text-sm;
-  }
-
   .tweet-login-h {
     @apply text-xl font-semibold mb-2;
   }
 
   .tweet-login {
     @apply mb-4;
-  }
-
-  .retweet-options {
-    @apply absolute left-0 top-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 w-72 z-50;
-  }
-
-  .retweet-option {
-    @apply block w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0;
-  }
-
-  .retweet-option-icon {
-    @apply inline-block mr-3 text-gray-600;
-  }
-
-  .retweet-option-subtext {
-    @apply text-sm text-gray-500 mt-1 ml-7;
   }
 
   .share-menu {
@@ -344,14 +288,5 @@
 
   .share-option-icon {
     color: #4b5563;
-  }
-
-  .tweet-overlay,
-  .tweet-overlay[data-dropdown-target="menu"],
-  .tweet-overlay[data-dropdown-target="menu"].show,
-  .tweet-overlay-options,
-  .tweet-overlay-option,
-  .tweet-overlay-icon {
-    @apply hidden;
   }
 }
