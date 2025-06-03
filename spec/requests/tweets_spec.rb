@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe "TweetsController", type: :request do
   let(:user) { create(:user) }
   let!(:tweet) { create(:tweet, user: user) }
+  let(:locale) { I18n.default_locale }
 
   include_context 'authenticated_user'
 
   describe "GET #index" do
-  let!(:tweets) { create_list(:tweet, 3) }
+    let!(:tweets) { create_list(:tweet, 3) }
 
-    before { get tweets_path }
+    before { get "/#{locale}/tweets" }
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
@@ -24,7 +25,7 @@ RSpec.describe "TweetsController", type: :request do
 
   describe "GET #show" do
     it "returns http success" do
-      get tweet_path(tweet.id), headers: { "ACCEPT" => "application/json" }
+      get "/#{locale}/tweets/#{tweet.id}"
 
       expect(response).to have_http_status(:success)
     end
@@ -34,7 +35,7 @@ RSpec.describe "TweetsController", type: :request do
     include_context 'authenticated_user'
 
     it "returns http success" do
-      get new_tweet_path, headers: { "ACCEPT" => "application/json" }
+      get "/#{locale}/tweets/new"
 
       expect(response).to have_http_status(:success)
     end
@@ -47,13 +48,13 @@ RSpec.describe "TweetsController", type: :request do
       let(:valid_params) { { tweet: { body: "Test tweet" } } }
 
       it "creates a new tweet" do
-        expect { post tweets_path, params: valid_params }.to change(Tweet, :count).by(1)
+        expect { post "/#{locale}/tweets", params: valid_params }.to change(Tweet, :count).by(1)
       end
 
       it "redirects to tweets index" do
-        post tweets_path, params: valid_params
+        post "/#{locale}/tweets", params: valid_params
 
-        expect(response).to redirect_to(tweets_path)
+        expect(response).to redirect_to("/#{locale}/tweets")
       end
     end
 
@@ -61,14 +62,14 @@ RSpec.describe "TweetsController", type: :request do
       let(:invalid_params) { { tweet: { body: "" } } }
 
       it "does not create a new tweet" do
-        expect { post tweets_path, params: invalid_params }.not_to change(Tweet, :count)
+        expect { post "/#{locale}/tweets", params: invalid_params }.not_to change(Tweet, :count)
       end
 
       it "re-renders the index template" do
-        post tweets_path, params: invalid_params
+        post "/#{locale}/tweets", params: invalid_params
 
+        expect(response).to have_http_status(:unprocessable_entity)
         expect(response.body).to include("form")
-        expect(response).to have_http_status(:ok)
       end
     end
   end
@@ -77,13 +78,13 @@ RSpec.describe "TweetsController", type: :request do
     include_context 'authenticated_user'
 
     it "deletes the tweet" do
-      expect { delete tweet_path(tweet) }.to change(Tweet, :count).by(-1)
+      expect { delete "/#{locale}/tweets/#{tweet.id}" }.to change(Tweet, :count).by(-1)
     end
 
     it "redirects to tweets index" do
-      delete tweet_path(tweet)
+      delete "/#{locale}/tweets/#{tweet.id}"
 
-      expect(response).to redirect_to(tweets_path)
+      expect(response).to redirect_to("/#{locale}/tweets")
     end
   end
 end
