@@ -1,11 +1,11 @@
 <div class="tweets-page-container">
   <h1 class="tweet-header">
-    <%= @tweet.origin.present? ? t('tweets.quote') : t('tweets.new') %>
+    <%= @tweet.origin.present? ? 'Quote Tweet' : 'New Tweet' %>
   </h1>
 
   <% if flash[:alert].present? %>
     <div class="tweet-error" role="alert" style="background-color: #fee2e2; border: 2px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-      <strong class="font-bold" style="color: #b91c1c;"><%= t('error') %></strong>
+      <strong class="font-bold" style="color: #b91c1c;">Error!</strong>
       <span style="color: #b91c1c;"><%= flash[:alert] %></span>
     </div>
   <% end %>
@@ -23,6 +23,6 @@
   <%= render 'tweets/tweet_form' %>
 
   <div class="mt-4">
-    <%= link_to t('tweets.back_to_tweets'), tweets_path, class: 'text-blue-500 hover:text-blue-700' %>
+    <%= link_to 'Back to Tweets', tweets_path, class: 'text-blue-500 hover:text-blue-700' %>
   </div>
 </div>

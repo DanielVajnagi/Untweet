@@ -4,7 +4,7 @@
       <div class="tweet-retweet-banner">
         <span class="tweet-retweet-icon">↪</span>
         <span class="tweet-retweet-text">
-          <%= tweet.user.username %> <%= t('tweets.retweeted_by') %> <%= time_ago_in_words_localized(tweet.created_at) %>
+          <%= tweet.user.username %> retweeted this <%= time_ago_in_words(tweet.created_at) %> ago
         </span>
       </div>
     <% end %>
@@ -21,13 +21,14 @@
           </span>
           <span class="tweet-time">·
             <% if tweet.is_retweet?%>
-              <%= time_ago_in_words_localized(tweet.original_tweet.created_at) %>
+              <%= time_ago_in_words(tweet.original_tweet.created_at) %>
             <% else %>
-              <%= time_ago_in_words_localized(tweet.created_at) %>
+              <%= time_ago_in_words(tweet.created_at) %>
             <% end %>
+            ago
           </span>
           <% if tweet.updated_at != tweet.created_at %>
-            <span class="tweet-edited">· <%= t('tweets.edited') %></span>
+            <span class="tweet-edited">· edited</span>
           <% end %>
         </div>
       </div>
@@ -52,7 +53,7 @@
 
   <div class="tweet-actions">
     <div class="tweet-action-button">
-      <%= button_to "#", method: :post, class: 'tweet-action tweet-comment', title: t('tweets.reply') do %>
+      <%= button_to "#", method: :post, class: 'tweet-action tweet-comment', title: 'Comment' do %>
         <span class="tweet-action-icon">💬</span>
         <span class="tweet-action-count">12</span>
       <% end %>
@@ -62,7 +63,7 @@
       <button type="button"
               class="tweet-action tweet-retweet"
               data-action="click->dropdown#toggle"
-              title="<%= t('tweets.retweet') %>">
+              title="Retweet">
         <span class="tweet-action-icon">↪</span>
         <span class="tweet-action-count">
           <% if tweet.is_retweet? %>
@@ -78,19 +79,19 @@
             class: "share-option",
             data: { "turbo-method": :post } do %>
           <span class="share-option-icon">↪</span>
-          <%= t('tweets.retweet') %>
+          Retweet
         <% end %>
 
         <%= link_to new_quote_tweet_path(tweet),
             class: "share-option" do %>
           <span class="share-option-icon">💭</span>
-          <%= t('tweets.quote') %>
+          Quote
         <% end %>
       </div>
     </div>
 
     <div class="tweet-action-button">
-      <%= button_to "#", method: :post, class: 'tweet-action tweet-like', title: t('tweets.like') do %>
+      <%= button_to "#", method: :post, class: 'tweet-action tweet-like', title: 'Like' do %>
         <span class="tweet-action-icon">❤️</span>
         <span class="tweet-action-count">0</span>
       <% end %>
@@ -99,14 +100,14 @@
     <% if tweet.author?(current_user) %>
       <% unless tweet.is_retweet? %>
         <div class="tweet-action-button">
-          <%= link_to edit_tweet_path(tweet), class: 'tweet-action tweet-edit', title: t('tweets.edit') do %>
+          <%= link_to edit_tweet_path(tweet), class: 'tweet-action tweet-edit', title: 'Edit Tweet' do %>
             <span class="tweet-action-icon">✏️</span>
           <% end %>
         </div>
       <% end %>
 
       <div class="tweet-action-button">
-        <%= button_to tweet_path(tweet), method: :delete, data: { turbo_confirm: t('tweets.confirm_delete') }, class: 'tweet-action tweet-delete', title: t('tweets.delete') do %>
+        <%= button_to tweet_path(tweet), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'tweet-action tweet-delete', title: 'Delete Tweet' do %>
           <span class="tweet-action-icon">🗑️</span>
         <% end %>
       </div>

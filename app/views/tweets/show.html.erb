@@ -1,11 +1,11 @@
 <div class="tweets-page-container">
-  <h2 class="tweet-header"><%= t('tweets.show') %></h2>
+  <h2 class="tweet-header">Tweet Details</h2>
 
   <ul class="tweet-list">
     <%= render partial: 'tweets/show_tweet', locals: { tweet: @tweet } %>
   </ul>
 
   <div class="mt-4">
-    <%= link_to t('tweets.back_to_tweets'), tweets_path, class: 'text-blue-500 hover:text-blue-700' %>
+    <%= link_to 'Back to Tweets', tweets_path, class: 'text-blue-500 hover:text-blue-700' %>
   </div>
 </div>

@@ -11,12 +11,12 @@
         <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
 
         <div>
-          <%= form.label :body, t('tweets.add_comment_retweet'), class: 'tweet-label' %>
-          <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280 %>
+          <%= form.label :body, 'Add a comment to your retweet', class: 'tweet-label' %>
+          <%= form.text_area :body, placeholder: 'Share your thoughts on this tweet', class: 'tweet-textarea', maxlength: 280 %>
         </div>
 
         <div>
-          <%= form.submit t('tweets.quote'), class: 'tweet-submit' %>
+          <%= form.submit 'Quote', class: 'tweet-submit' %>
         </div>
       <% end %>
     <% else %>
@@ -25,12 +25,12 @@
         <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
 
         <div>
-          <%= form.label :body, t('tweets.add_comment'), class: 'tweet-label' %>
-          <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280 %>
+          <%= form.label :body, 'Add a comment', class: 'tweet-label' %>
+          <%= form.text_area :body, placeholder: 'Share your thoughts on this tweet', class: 'tweet-textarea', maxlength: 280 %>
         </div>
 
         <div>
-          <%= form.submit @tweet.new_record? ? t('tweets.quote') : t('tweets.update_quote'), class: 'tweet-submit' %>
+          <%= form.submit @tweet.new_record? ? 'Quote Tweet' : 'Update Quote', class: 'tweet-submit' %>
         </div>
       <% end %>
     <% end %>
@@ -39,12 +39,12 @@
       <%= render 'tweets/error_messages', tweet: @tweet %>
 
       <div>
-        <%= form.label :body, t('tweets.content'), class: 'tweet-label' %>
-        <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280 %>
+        <%= form.label :body, 'What\'s happening?', class: 'tweet-label' %>
+        <%= form.text_area :body, placeholder: 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
       </div>
 
       <div>
-        <%= form.submit @tweet.new_record? ? t('tweets.post') : t('tweets.update'), class: 'tweet-submit' %>
+        <%= form.submit @tweet.new_record? ? 'Tweet' : 'Update Tweet', class: 'tweet-submit' %>
       </div>
     <% end %>
   <% end %>
