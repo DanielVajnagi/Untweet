@@ -1,11 +1,16 @@
-<% if @tweet.errors.present? %>
+<% if tweet.errors.present? %>
   <div class="tweet-error" role="alert">
     <strong class="font-bold">Oops!</strong>
-    <span><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</span>
-    <ul>
-      <% @tweet.errors.full_messages.each do |message| %>
+    <span><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</span>
+    <ul class="list-disc pl-5 mt-2">
+      <% tweet.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
+<% else %>
+  <!-- Debug: No errors found on tweet -->
+  <% if Rails.env.development? %>
+    <div style="display: none;">No errors found on tweet</div>
+  <% end %>
 <% end %>

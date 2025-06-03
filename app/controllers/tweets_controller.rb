@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, only: [ :create, :destroy ]
+  before_action :authenticate_user!, only: [ :create, :destroy, :retweet, :new_quote, :create_quote ]
 
   # GET /tweets
   def index
@@ -9,6 +9,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
+    @tweet = Tweet.find(params[:id])
   end
 
   # GET /tweets/new
@@ -19,6 +20,12 @@ class TweetsController < ApplicationController
   # GET /tweets/1/edit
   def edit
     @tweet = Tweet.find(params[:id])
+
+    # Only allow editing of original tweets and quoted tweets
+    unless @tweet.is_original? || @tweet.is_quote?
+      redirect_to tweets_path, alert: "You can only edit original tweets or quote tweets."
+      nil
+    end
   end
 
   # POST /tweets
@@ -29,8 +36,9 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to tweets_path, notice: "Tweet was successfully created."
     else
-      @tweets = Tweet.all
-      render :index
+      @tweets = Tweet.all.order(created_at: :desc)
+      flash.now[:alert] = "Failed to create tweet. Please check the errors below."
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -38,10 +46,17 @@ class TweetsController < ApplicationController
   def update
     @tweet = Tweet.find(params[:id])
 
+    # Allow updating of original tweets, quoted tweets, and retweets
+    unless @tweet.is_original? || @tweet.is_quote? || @tweet.is_retweet?
+      redirect_to tweets_path, alert: "You can only update original tweets, quote tweets, or retweets."
+      return
+    end
+
     if @tweet.update(tweet_params)
-      redirect_to root_path, notice: "Tweet was successfully updated."
+      redirect_to tweets_path, notice: "Tweet was successfully updated."
     else
-      render :edit
+      flash.now[:alert] = "Failed to update tweet. Please check the errors below."
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -49,19 +64,75 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
 
+    # Only allow deletion of original tweets
+    unless @tweet.is_original?
+      redirect_to tweets_path, alert: "You can only delete original tweets."
+      return
+    end
+
     if @tweet.user == current_user && @tweet.destroy
       redirect_to tweets_path, notice: "Tweet was successfully deleted."
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
+  # POST /tweets/:id/retweet
+  def retweet
+    tweet_to_retweet = Tweet.find(params[:id])
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:body)
+    # Find the original tweet to retweet
+    original_tweet = tweet_to_retweet.original_tweet
+
+    # Create a new retweet of the original tweet
+    retweet = current_user.tweets.build(origin: original_tweet)
+
+    if retweet.save
+      redirect_to tweets_path, notice: "Retweeted!"
+    else
+      redirect_to tweets_path, alert: "Retweet failed."
     end
+  end
+
+  # GET /tweets/:id/new_quote
+  def new_quote
+    @original = Tweet.find(params[:id])
+
+    # Get the original tweet if this is a retweet
+    @original = @original.original_tweet if @original.is_retweet?
+
+    @tweet = current_user.tweets.build(origin: @original)
+    render :new
+  end
+
+  # POST /tweets/:id/create_quote
+  def create_quote
+    @original = Tweet.find(params[:id])
+
+    # Get the original tweet if this is a retweet
+    @original = @original.original_tweet if @original.is_retweet?
+
+    @tweet = current_user.tweets.build(tweet_params)
+    @tweet.origin = @original
+    @tweet.user = current_user
+
+    if @tweet.save
+      redirect_to tweets_path, notice: "Quote tweet posted!"
+    else
+      # Add a specific error if none are present
+      if @tweet.errors.empty?
+        @tweet.errors.add(:base, "There was an error creating your quote tweet.")
+      end
+
+      flash.now[:alert] = "There was an error creating your quote tweet."
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def tweet_params
+    params.require(:tweet).permit(:body, :origin_id)
+  end
 end

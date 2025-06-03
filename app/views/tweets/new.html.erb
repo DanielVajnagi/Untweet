@@ -1,18 +1,22 @@
 <div class="tweets-page-container">
   <h1 class="tweet-header">
-    <% if @tweet.is_retweet? %>
-      Edit Retweet
-    <% elsif @tweet.origin.present? %>
-      Edit Quote Tweet
-    <% else %>
-      Edit Tweet
-    <% end %>
+    <%= @tweet.origin.present? ? 'Quote Tweet' : 'New Tweet' %>
   </h1>
 
   <% if flash[:alert].present? %>
     <div class="tweet-error" role="alert" style="background-color: #fee2e2; border: 2px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
       <strong class="font-bold" style="color: #b91c1c;">Error!</strong>
       <span style="color: #b91c1c;"><%= flash[:alert] %></span>
+    </div>
+  <% end %>
+
+  <!-- Debug: Tweet object info -->
+  <% if Rails.env.development? %>
+    <div style="display: none;">
+      Tweet ID: <%= @tweet.id || 'new' %><br>
+      Tweet has errors: <%= @tweet.errors.present? %><br>
+      Error count: <%= @tweet.errors.count %><br>
+      Error messages: <%= @tweet.errors.full_messages.join(', ') %>
     </div>
   <% end %>
 

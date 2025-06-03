@@ -1,14 +1,51 @@
 <div class="tweet-form-container">
-  <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
-    <%= render 'tweets/error_messages' %>
+  <!-- Debug: Form rendering -->
+  <% if Rails.env.development? %>
+    <div style="display: none;">Rendering tweet form</div>
+  <% end %>
 
-    <div>
-      <%= form.label :body, 'What’s happening?', class: 'tweet-label' %>
-      <%= form.text_area :body, placeholder: 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
-    </div>
+  <% if @tweet.origin.present? %>
+    <% if @tweet.is_retweet? %>
+      <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
+        <%= render 'tweets/error_messages', tweet: @tweet %>
+        <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
 
-    <div>
-      <%= form.submit 'Tweet', class: 'tweet-submit' %>
-    </div>
+        <div>
+          <%= form.label :body, 'Add a comment to your retweet', class: 'tweet-label' %>
+          <%= form.text_area :body, placeholder: 'Share your thoughts on this tweet', class: 'tweet-textarea', maxlength: 280 %>
+        </div>
+
+        <div>
+          <%= form.submit 'Quote', class: 'tweet-submit' %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
+        <%= render 'tweets/error_messages', tweet: @tweet %>
+        <%= form.hidden_field :origin_id, value: @tweet.origin.id %>
+
+        <div>
+          <%= form.label :body, 'Add a comment', class: 'tweet-label' %>
+          <%= form.text_area :body, placeholder: 'Share your thoughts on this tweet', class: 'tweet-textarea', maxlength: 280 %>
+        </div>
+
+        <div>
+          <%= form.submit @tweet.new_record? ? 'Quote Tweet' : 'Update Quote', class: 'tweet-submit' %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_with model: @tweet, local: true, class: 'tweet-form' do |form| %>
+      <%= render 'tweets/error_messages', tweet: @tweet %>
+
+      <div>
+        <%= form.label :body, 'What\'s happening?', class: 'tweet-label' %>
+        <%= form.text_area :body, placeholder: 'Share your thoughts', class: 'tweet-textarea', maxlength: 280 %>
+      </div>
+
+      <div>
+        <%= form.submit @tweet.new_record? ? 'Tweet' : 'Update Tweet', class: 'tweet-submit' %>
+      </div>
+    <% end %>
   <% end %>
 </div>
