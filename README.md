@@ -21,5 +21,5 @@ Untweet is a simple Twitter clone built with Ruby on Rails
 git clone https://github.com/DanielVajnagi/Untweet.git
 cd untweet
 bundle install
-rails db:create db:migrate db:seed
+rails db:create db:migrate
 bin/dev
