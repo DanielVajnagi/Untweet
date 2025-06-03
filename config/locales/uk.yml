@@ -39,7 +39,27 @@ uk:
   too_short: "занадто коротке"
   too_long: "занадто довге"
 
+  # Date and Time
+  date:
+    month_names: [~, січня, лютого, березня, квітня, травня, червня, липня, серпня, вересня, жовтня, листопада, грудня]
+    abbr_month_names: [~, січ, лют, бер, кві, тра, чер, лип, сер, вер, жов, лис, гру]
+    day_names: [неділя, понеділок, вівторок, середа, четвер, п'ятниця, субота]
+    abbr_day_names: [нд, пн, вт, ср, чт, пт, сб]
+    formats:
+      default: "%d %B %Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+    order:
+      - :day
+      - :month
+      - :year
+
   # Time
+  time:
+    formats:
+      default: "%d %B %Y о %H:%M"
+      short: "%d %b %Y"
+      long: "%d %B %Y о %H:%M"
   datetime:
     distance_in_words:
       about_x_hours:
@@ -76,6 +96,10 @@ uk:
       x_seconds:
         one: "1 секунда"
         other: "%{count} секунд"
+    formats:
+      default: "%d %B %Y о %H:%M"
+      short: "%d %b %Y"
+      long: "%d %B %Y о %H:%M"
 
   # Tweets
   tweets:
@@ -122,6 +146,12 @@ uk:
     update_error: "Не вдалося оновити твіт. Перевірте помилки нижче."
     retweet_error: "Не вдалося ретвітнути."
     quote_error: "Виникла помилка при створенні цитати."
+    back_to_tweets: "Повернутися до твітів"
+    recent_tweets: "Останні твіти"
+    created_on: "Створено: %{time}"
+    edited_on: "Відредаговано: %{time}"
+    edit_retweet: "Редагувати ретвіт"
+    edit_quote_tweet: "Редагувати цитату"
 
   # Devise Shared
   devise:
@@ -129,3 +159,16 @@ uk:
       minimum_password_length: "мінімум %{count} символів"
       already_have_account: "Вже маєте обліковий запис?"
       dont_have_account: "Немає облікового запису?"
+      forgot_password: "Забули пароль?"
+      didnt_receive_confirmation: "Не отримали інструкції для підтвердження?"
+      didnt_receive_unlock: "Не отримали інструкції для розблокування?"
+      sign_in_with: "Увійти через %{provider}"
+    registrations:
+      edit:
+        title: "Редагувати %{resource}"
+        password_blank: "(залиште порожнім, якщо не хочете змінювати)"
+        password_minimum: "мінімум %{count} символів"
+        current_password: "(нам потрібен ваш поточний пароль для підтвердження змін)"
+        update: "Оновити"
+        delete_account: "Видалити мій обліковий запис"
+        delete_confirm: "Ви впевнені?"

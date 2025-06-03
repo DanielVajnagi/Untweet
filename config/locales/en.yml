@@ -105,6 +105,10 @@ en:
       x_seconds:
         one: "1 second"
         other: "%{count} seconds"
+    formats:
+      default: "%B %d, %Y at %I:%M %p"
+      short: "%b %d, %Y"
+      long: "%B %d, %Y at %I:%M %p"
 
   # Tweets
   tweets:
@@ -151,6 +155,12 @@ en:
     update_error: "Failed to update tweet. Please check the errors below."
     retweet_error: "Retweet failed."
     quote_error: "There was an error creating your quote tweet."
+    back_to_tweets: "Back to Tweets"
+    recent_tweets: "Recent Tweets"
+    created_on: "Created on: %{time}"
+    edited_on: "Edited on: %{time}"
+    edit_retweet: "Edit Retweet"
+    edit_quote_tweet: "Edit Quote Tweet"
 
   # Devise Shared
   devise:
@@ -158,3 +168,16 @@ en:
       minimum_password_length: "%{count} characters minimum"
       already_have_account: "Already have an account?"
       dont_have_account: "Don't have an account?"
+      forgot_password: "Forgot your password?"
+      didnt_receive_confirmation: "Didn't receive confirmation instructions?"
+      didnt_receive_unlock: "Didn't receive unlock instructions?"
+      sign_in_with: "Sign in with %{provider}"
+    registrations:
+      edit:
+        title: "Edit %{resource}"
+        password_blank: "(leave blank if you don't want to change it)"
+        password_minimum: "%{count} characters minimum"
+        current_password: "(we need your current password to confirm your changes)"
+        update: "Update"
+        delete_account: "Delete my account"
+        delete_confirm: "Are you sure?"
