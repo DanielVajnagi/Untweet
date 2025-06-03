@@ -1,12 +1,14 @@
-<div class="quote-tweet">
-  <div class="quote-tweet-content">
-    <p class="quote-tweet-body"><%= tweet.body %></p>
-    <div class="quote-tweet-original">
-      <div class="quote-tweet-header">
-        <span class="quote-tweet-author"><%= tweet.origin.user.username %></span>
-        <span class="quote-tweet-time">· <%= time_ago_in_words_localized(tweet.origin.created_at) %></span>
-      </div>
-      <p class="quote-tweet-original-body"><%= tweet.origin.body %></p>
-    </div>
-  </div>
+<div class="quote-tweet-content">
+  <p class="tweet-body">
+    <%= tweet.body %>
+  </p>
 </div>
+<%= link_to tweet_path(tweet.original_tweet), class: "original-tweet-container" do %>
+  <div class="original-tweet-header">
+    <span class="tweet-author"><%= tweet.original_tweet.user.username %></span>
+    <span class="tweet-time">· <%= time_ago_in_words_localized(tweet.original_tweet.created_at) %> ago</span>
+  </div>
+  <p class="original-tweet-body">
+    <%= tweet.original_tweet.body %>
+  </p>
+<% end %>
