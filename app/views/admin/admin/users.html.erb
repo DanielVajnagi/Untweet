@@ -1,0 +1,47 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6"><%= t('admin.dashboard.title') %></h1>
+
+    <% if current_user != true_user %>
+      <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6">
+        <p><%= t('admin.dashboard.impersonating', email: current_user.email) %></p>
+        <%= button_to t('admin.dashboard.stop_impersonating'), admin_stop_impersonating_path, method: :post, class: "mt-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    <% end %>
+
+    <%= render 'admin/admin/navigation' %>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.email') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.role') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.actions') %></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <% @users.each do |user| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap"><%= user.email %></td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= t("roles.#{user.role}") %>
+                <% if current_user.is_superadmin? && user != current_user && !user.superadmin_role? %>
+                  <%= form_with url: admin_update_role_path(user), method: :patch, local: true, class: "inline-block ml-2" do |f| %>
+                    <%= f.select :role, User.roles.keys.reject { |r| r == 'superadmin' }.map { |r| [t("roles.#{r}"), r] }, { selected: user.role }, class: "border rounded px-2 py-1" %>
+                    <%= f.submit t('admin.dashboard.change'), class: "ml-1 bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded text-xs" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <% unless user == current_user || user.superadmin_role? %>
+                  <%= button_to t('admin.dashboard.impersonate'), admin_impersonate_path(user), method: :post, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

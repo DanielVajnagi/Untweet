@@ -18,8 +18,20 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= render 'layouts/navbar' %> 
+  <body class="bg-gray-100">
+    <% if current_user != true_user %>
+      <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
+        <div class="container mx-auto flex justify-between items-center">
+          <p>
+            <%= t('admin.dashboard.impersonating', email: current_user.email) %>
+            (<%= t('admin.dashboard.true_user', email: true_user.email) %>)
+          </p>
+          <%= button_to t('admin.dashboard.stop_impersonating'), admin_stop_impersonating_path, method: :post, class: "bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render 'layouts/navbar' %>
     <main>
       <%= yield %>
     </main>

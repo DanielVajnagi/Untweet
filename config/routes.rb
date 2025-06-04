@@ -7,6 +7,16 @@ Rails.application.routes.draw do
     }
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+    # Admin routes
+    namespace :admin do
+      root to: 'admin#users'
+      get 'users', to: 'admin#users'
+      get 'tweets', to: 'admin#tweets'
+      post 'impersonate/:id', to: 'admin#impersonate', as: :impersonate
+      post 'stop_impersonating', to: 'admin#stop_impersonating', as: :stop_impersonating
+      patch 'update_role/:id', to: 'admin#update_role', as: :update_role
+    end
+
     # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
     # Can be used by load balancers and uptime monitors to verify that the app is live.
     get "up" => "rails/health#show", as: :rails_health_check

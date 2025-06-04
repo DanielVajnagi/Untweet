@@ -157,6 +157,8 @@ GEM
       racc
     pg (1.5.8)
     pg (1.5.8-x64-mingw-ucrt)
+    pretender (0.6.0)
+      actionpack (>= 7.1)
     psych (5.2.0)
       stringio
     puma (6.4.3)
@@ -309,6 +311,7 @@ DEPENDENCIES
   faker
   importmap-rails
   pg (~> 1.5)
+  pretender
   puma (>= 5.0)
   rails (~> 7.2.2)
   rspec-rails (~> 7.0.0)

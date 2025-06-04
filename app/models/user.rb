@@ -16,6 +16,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
           :rememberable, :validatable
 
+  enum role: { user: "user", admin: "admin", superadmin: "superadmin" }, _suffix: true
+
   validates :encrypted_password, presence: true
   validates :username, presence: true
   validates :email, presence: true
@@ -35,5 +37,13 @@ class User < ApplicationRecord
     return nil unless login.present?
 
     where(conditions.to_h).where([ "lower(username) = :value OR lower(email) = :value", { value: login.downcase } ]).first
+  end
+
+  def is_admin?
+    admin_role? || superadmin_role?
+  end
+
+  def is_superadmin?
+    superadmin_role?
   end
 end

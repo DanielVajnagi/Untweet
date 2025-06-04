@@ -152,6 +152,7 @@ uk:
     edited_on: "Відредаговано: %{time}"
     edit_retweet: "Редагувати ретвіт"
     edit_quote_tweet: "Редагувати цитату"
+    impersonated: "Користувач імперсонований"
 
   # Devise Shared
   devise:
@@ -172,3 +173,34 @@ uk:
         update: "Оновити"
         delete_account: "Видалити мій обліковий запис"
         delete_confirm: "Ви впевнені?"
+
+  admin:
+    dashboard:
+      title: "Панель адміністратора"
+      impersonating: "Ви зараз імперсонуєте %{email}"
+      true_user: "Справжній користувач: %{email}"
+      stop_impersonating: "Зупинити імперсонацію"
+      email: "Електронна пошта"
+      role: "Роль"
+      actions: "Дії"
+      change: "Змінити"
+      impersonate: "Імперсонувати"
+      users: "Користувачі"
+      tweets: "Твіти"
+    tweets:
+      title: "Модерація твітів"
+      user: "Користувач"
+      tweet: "Твіт"
+      created_at: "Створено"
+      actions: "Дії"
+      delete: "Видалити"
+  roles:
+    user: "Користувач"
+    admin: "Адміністратор"
+    superadmin: "Супер-адміністратор"
+  notices:
+    impersonating: "Тепер імперсонуєте %{email}"
+    stopped_impersonating: "Зупинено імперсонацію"
+    role_updated: "Роль для %{email} змінено на %{role}"
+    not_authorized: "Не авторизовано"
+    cannot_impersonate_superadmin: "Неможливо імперсонувати супер-адміністратора"

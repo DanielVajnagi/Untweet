@@ -1,0 +1,32 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6"><%= t('admin.dashboard.title') %></h1>
+
+    <%= render 'admin/admin/navigation' %>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.tweets.user') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.tweets.tweet') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.tweets.created_at') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.tweets.actions') %></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <% @tweets.each do |tweet| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap"><%= tweet.user.email %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= tweet.body %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= tweet.created_at.strftime("%B %d, %Y") %></td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= button_to t('admin.tweets.delete'), tweet_path(tweet), method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
