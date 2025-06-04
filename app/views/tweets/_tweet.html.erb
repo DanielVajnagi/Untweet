@@ -1,4 +1,5 @@
-<li class="tweet-item" data-controller="dropdown">
+<li class="tweet-item" data-controller="dropdown" data-turbo-stream-target="tweet">
+  <%= turbo_stream_from "tweets" %>
   <%= link_to tweet.is_retweet? ? tweet_path(tweet.original_tweet) : tweet_path(tweet), class: "tweet-link" do %>
     <% if tweet.is_retweet? %>
       <div class="tweet-retweet-banner">
@@ -90,10 +91,7 @@
     </div>
 
     <div class="tweet-action-button">
-      <%= button_to "#", method: :post, class: 'tweet-action tweet-like', title: t('tweets.like') do %>
-        <span class="tweet-action-icon">❤️</span>
-        <span class="tweet-action-count">0</span>
-      <% end %>
+      <%= render 'tweets/like_button', tweet: tweet %>
     </div>
 
     <% if tweet.author?(current_user) %>

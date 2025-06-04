@@ -167,8 +167,28 @@
     @apply text-green-500;
   }
 
-  .tweet-like:hover {
+  .tweet-like {
+    @apply flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors duration-200;
+  }
+
+  .tweet-like.liked {
     @apply text-red-500;
+  }
+
+  .tweet-like.liked:hover {
+    @apply text-red-600;
+  }
+
+  .tweet-like .tweet-action-icon {
+    @apply transition-transform duration-200;
+  }
+
+  .tweet-like:hover .tweet-action-icon {
+    @apply scale-110;
+  }
+
+  .tweet-like.liked .tweet-action-icon {
+    @apply scale-110;
   }
 
   .tweet-edit:hover {
