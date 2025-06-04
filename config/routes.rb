@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       patch 'update_role/:id', to: 'admin#update_role', as: :update_role
       post 'ban/:id', to: 'admin#ban', as: :ban
       post 'unban/:id', to: 'admin#unban', as: :unban
+      delete 'tweets/:id', to: 'admin#destroy_tweet', as: :destroy_tweet
     end
 
     # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

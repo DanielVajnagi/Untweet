@@ -225,6 +225,7 @@ en:
       ban: "Ban"
       unban: "Unban"
       true_user: "True user: %{email}"
+      ban_unban_column: "Banning"
     tweets:
       title: "Tweet Moderation"
       user: "User"

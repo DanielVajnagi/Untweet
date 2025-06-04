@@ -17,8 +17,8 @@
           <tr class="bg-gray-100">
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.email') %></th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.role') %></th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.status') %></th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.actions') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.impersonate') %></th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('admin.dashboard.ban_unban_column') %></th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
@@ -35,20 +35,11 @@
                 <% end %>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <% if user.banned? %>
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                    <%= t('admin.dashboard.banned') %>
-                  </span>
-                <% else %>
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    <%= t('admin.dashboard.active') %>
-                  </span>
-                <% end %>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap space-x-2">
                 <% unless user == current_user || user.superadmin_role? %>
                   <%= button_to t('admin.dashboard.impersonate'), admin_impersonate_path(user), method: :post, class: "inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
                 <% end %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
                 <% if current_user.is_admin? && user != current_user && !user.superadmin_role? %>
                   <% if user.banned? %>
                     <%= button_to t('admin.dashboard.unban'), admin_unban_path(user), method: :post, class: "inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>

@@ -63,6 +63,16 @@ module Admin
       end
     end
 
+    def destroy_tweet
+      tweet = Tweet.find(params[:id])
+      if current_user.is_admin?
+        tweet.destroy
+        redirect_to admin_tweets_path, notice: t('tweets.deleted')
+      else
+        redirect_to admin_tweets_path, alert: t('tweets.not_authorized')
+      end
+    end
+
     private
 
     def require_admin
