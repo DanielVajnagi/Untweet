@@ -202,20 +202,29 @@ en:
         update: "Update"
         delete_account: "Delete my account"
         delete_confirm: "Are you sure?"
+    failure:
+      banned: "Your account has been banned. Please contact an administrator."
+      invalid: "Invalid email or password"
+    sessions:
+      user:
+        invalid: "Invalid email or password"
 
   admin:
     dashboard:
       title: "Admin Dashboard"
-      impersonating: "You are currently impersonating %{email}"
-      true_user: "True user: %{email}"
-      stop_impersonating: "Stop Impersonating"
       email: "Email"
       role: "Role"
+      status: "Status"
       actions: "Actions"
-      change: "Change"
       impersonate: "Impersonate"
-      users: "Users"
-      tweets: "Tweets"
+      stop_impersonating: "Stop Impersonating"
+      impersonating: "Impersonating user: %{email}"
+      change: "Change"
+      banned: "Banned"
+      active: "Active"
+      ban: "Ban"
+      unban: "Unban"
+      true_user: "True user: %{email}"
     tweets:
       title: "Tweet Moderation"
       user: "User"
@@ -228,8 +237,12 @@ en:
     admin: "Administrator"
     superadmin: "Super Administrator"
   notices:
-    impersonating: "Now impersonating %{email}"
+    role_updated: "User role updated"
+    impersonating: "Impersonating user: %{email}"
     stopped_impersonating: "Stopped impersonating"
-    role_updated: "Role for %{email} updated to %{role}"
-    not_authorized: "Not authorized"
-    cannot_impersonate_superadmin: "Cannot impersonate super administrator"
+    not_authorized: "You are not authorized to access this page"
+    cannot_impersonate_superadmin: "Cannot impersonate super admin"
+    user_banned: "User has been banned"
+    user_unbanned: "User has been unbanned"
+    cannot_ban_superadmin: "Cannot ban super admin"
+    cannot_ban_self: "Cannot ban yourself"

@@ -173,20 +173,29 @@ uk:
         update: "Оновити"
         delete_account: "Видалити мій обліковий запис"
         delete_confirm: "Ви впевнені?"
+    failure:
+      banned: "Ваш обліковий запис заблоковано. Будь ласка, зверніться до адміністратора."
+      invalid: "Невірний email або пароль"
+    sessions:
+      user:
+        invalid: "Невірний email або пароль"
 
   admin:
     dashboard:
       title: "Панель адміністратора"
-      impersonating: "Ви зараз імперсонуєте %{email}"
-      true_user: "Справжній користувач: %{email}"
-      stop_impersonating: "Зупинити імперсонацію"
-      email: "Електронна пошта"
+      email: "Email"
       role: "Роль"
+      status: "Статус"
       actions: "Дії"
-      change: "Змінити"
       impersonate: "Імперсонувати"
-      users: "Користувачі"
-      tweets: "Твіти"
+      stop_impersonating: "Зупинити імперсонацію"
+      impersonating: "Імперсонуємо користувача: %{email}"
+      change: "Змінити"
+      banned: "Заблокований"
+      active: "Активний"
+      ban: "Заблокувати"
+      unban: "Розблокувати"
+      true_user: "Справжній користувач: %{email}"
     tweets:
       title: "Модерація твітів"
       user: "Користувач"
@@ -199,8 +208,12 @@ uk:
     admin: "Адміністратор"
     superadmin: "Супер-адміністратор"
   notices:
-    impersonating: "Тепер імперсонуєте %{email}"
-    stopped_impersonating: "Зупинено імперсонацію"
-    role_updated: "Роль для %{email} змінено на %{role}"
-    not_authorized: "Не авторизовано"
+    role_updated: "Роль користувача оновлено"
+    impersonating: "Імперсонуємо користувача: %{email}"
+    stopped_impersonating: "Імперсонацію зупинено"
+    not_authorized: "Ви не маєте доступу до цієї сторінки"
     cannot_impersonate_superadmin: "Неможливо імперсонувати супер-адміністратора"
+    user_banned: "Користувача заблоковано"
+    user_unbanned: "Користувача розблоковано"
+    cannot_ban_superadmin: "Неможливо заблокувати супер-адміністратора"
+    cannot_ban_self: "Неможливо заблокувати себе"

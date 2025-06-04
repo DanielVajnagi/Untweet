@@ -37,6 +37,32 @@ module Admin
       end
     end
 
+    def ban
+      user = User.find(params[:id])
+      if current_user.is_admin? && user != current_user && !user.superadmin_role?
+        user.update(banned: true)
+        # If the banned user is currently logged in, sign them out
+        if user == current_user
+          sign_out user
+          redirect_to new_user_session_path, alert: t('notices.user_banned')
+        else
+          redirect_to admin_users_path, notice: t('notices.user_banned')
+        end
+      else
+        redirect_to admin_users_path, alert: t('notices.not_authorized')
+      end
+    end
+
+    def unban
+      user = User.find(params[:id])
+      if current_user.is_admin? && user != current_user
+        user.update(banned: false)
+        redirect_to admin_users_path, notice: t('notices.user_unbanned', email: user.email)
+      else
+        redirect_to admin_users_path, alert: t('notices.not_authorized')
+      end
+    end
+
     private
 
     def require_admin

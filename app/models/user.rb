@@ -46,4 +46,12 @@ class User < ApplicationRecord
   def is_superadmin?
     superadmin_role?
   end
+
+  def active_for_authentication?
+    super && !banned?
+  end
+
+  def inactive_message
+    banned? ? :banned : super
+  end
 end
