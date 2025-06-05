@@ -1,8 +1,9 @@
 <%# This partial is used by Turbo to update the like button state %>
 <div id="tweet_<%= tweet.id %>_like_button" class="tweet-action-button">
-  <% if current_user %>
-    <% if current_user.likes.exists?(tweet: tweet.is_retweet? ? tweet.original_tweet : tweet) %>
-      <%= button_to tweet_like_path(tweet.is_retweet? ? tweet.original_tweet : tweet, current_user.likes.find_by(tweet: tweet.is_retweet? ? tweet.original_tweet : tweet)),
+  <% if local_assigns[:current_user] || (defined?(current_user) && current_user) %>
+    <% user = local_assigns[:current_user] || current_user %>
+    <% if user.likes.exists?(tweet: tweet.is_retweet? ? tweet.original_tweet : tweet) %>
+      <%= button_to tweet_like_path(tweet.is_retweet? ? tweet.original_tweet : tweet, user.likes.find_by(tweet: tweet.is_retweet? ? tweet.original_tweet : tweet)),
           method: :delete,
           class: 'tweet-action tweet-like liked',
           data: { turbo_method: :delete },

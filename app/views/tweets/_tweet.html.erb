@@ -55,7 +55,7 @@
     <div class="tweet-action-button">
       <%= button_to "#", method: :post, class: 'tweet-action tweet-comment', title: t('tweets.reply') do %>
         <span class="tweet-action-icon">💬</span>
-        <span class="tweet-action-count">12</span>
+        <%= render 'tweets/comment_count', tweet: tweet %>
       <% end %>
     </div>
 
@@ -65,13 +65,7 @@
               data-action="click->dropdown#toggle"
               title="<%= t('tweets.retweet') %>">
         <span class="tweet-action-icon">↪</span>
-        <span class="tweet-action-count">
-          <% if tweet.is_retweet? %>
-            <%= tweet.original_tweet.retweet_count %>
-          <% else %>
-            <%= tweet.retweet_count %>
-          <% end %>
-        </span>
+        <%= render 'tweets/retweet_count', tweet: tweet %>
       </button>
 
       <div class="share-menu" data-dropdown-target="menu">

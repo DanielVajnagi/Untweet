@@ -1,0 +1,7 @@
+<span id="tweet_<%= tweet.id %>_retweet_count" class="tweet-action-count">
+  <% if tweet.is_retweet? %>
+    <%= tweet.original_tweet.retweet_count %>
+  <% else %>
+    <%= tweet.retweet_count %>
+  <% end %>
+</span>
