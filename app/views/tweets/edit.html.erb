@@ -1,25 +1,24 @@
 <div class="tweets-page-container">
-  <h1 class="tweet-header">
-    <% if @tweet.is_retweet? %>
-      <%= t('tweets.edit_retweet') %>
-    <% elsif @tweet.origin.present? %>
-      <%= t('tweets.edit_quote_tweet') %>
-    <% else %>
-      <%= t('tweets.edit') %>
-    <% end %>
-  </h1>
-
-  <% if flash[:alert].present? %>
-    <div class="tweet-error" role="alert" style="background-color: #fee2e2; border: 2px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-      <strong class="font-bold" style="color: #b91c1c;"><%= t('error') %></strong>
-      <span style="color: #b91c1c;"><%= flash[:alert] %></span>
-    </div>
-  <% end %>
-
-  <%= render 'tweets/tweet_form' %>
-
-  <div class="mt-4">
-    <%= link_to t('tweets.back_to_tweets'), tweets_path, class: 'text-blue-500 hover:text-blue-700' %>
+  <div class="tweet-show-header">
+    <h2 class="tweet-header">
+      <% if @tweet.is_retweet? %>
+        <%= t('tweets.edit_retweet') %>
+      <% elsif @tweet.origin.present? %>
+        <%= t('tweets.edit_quote_tweet') %>
+      <% else %>
+        <%= t('tweets.edit') %>
+      <% end %>
+    </h2>
+    <%= link_to t('tweets.back_to_tweets'), tweets_path, class: 'back-button' %>
   </div>
+
+    <% if flash[:alert].present? %>
+      <div class="tweet-error" role="alert" style="background-color: #fee2e2; border: 2px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+        <strong class="font-bold" style="color: #b91c1c;"><%= t('error') %></strong>
+        <span style="color: #b91c1c;"><%= flash[:alert] %></span>
+      </div>
+    <% end %>
+
+    <%= render 'tweets/tweet_form' %>
 </div>
 

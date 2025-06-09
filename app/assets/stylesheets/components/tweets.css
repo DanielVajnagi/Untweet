@@ -1,6 +1,6 @@
 @layer components{
-  .tweet-form-container {
-    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-2xl mx-auto mt-6 border border-gray-100;
+  .tweet-form {
+    @apply bg-white rounded-lg p-6;
   }
 
   .tweet-error {
