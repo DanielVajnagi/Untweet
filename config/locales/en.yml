@@ -140,6 +140,7 @@ en:
     share_thoughts: "Share your thoughts"
     edited: "edited"
     like: "Like"
+    unlike: "Unlike"
     please_login: "Please log in to share your thoughts!"
     join_conversation: "Join the conversation and connect with others."
     error_messages:

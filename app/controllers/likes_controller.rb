@@ -3,36 +3,48 @@ class LikesController < ApplicationController
   before_action :set_tweet
 
   def create
-    # If we're liking a retweet, get the original tweet
-    original_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
+    # For quotes, we only like the quote itself
+    if @tweet.is_quote?
+      target_tweet = @tweet
+    else
+      # For original tweets and retweets, we like the original tweet
+      target_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
+    end
 
-    # Create like on original tweet
-    @like = current_user.likes.build(tweet: original_tweet)
+    # Create like on target tweet
+    @like = current_user.likes.build(tweet: target_tweet)
 
     if @like.save
-      # Create likes on all retweets
-      original_tweet.retweets.each do |retweet|
-        current_user.likes.create(tweet: retweet) unless current_user.likes.exists?(tweet: retweet)
+      # For original tweets and retweets, create likes on all retweets (excluding quotes)
+      unless @tweet.is_quote?
+        target_tweet.retweets.where(body: nil).each do |retweet|
+          current_user.likes.create(tweet: retweet) unless current_user.likes.exists?(tweet: retweet)
+        end
+      else
+        # For quotes, create likes on all retweets of the quote
+        target_tweet.retweets.each do |retweet|
+          current_user.likes.create(tweet: retweet) unless current_user.likes.exists?(tweet: retweet)
+        end
       end
 
-      broadcast_like_update
+      broadcast_like_update(target_tweet)
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            # Update like button for the clicked tweet (retweet or original)
+            # Update like button for the clicked tweet
             turbo_stream.replace(
               "tweet_#{@tweet.id}_like_button",
               partial: "tweets/like_button",
               locals: { tweet: @tweet }
             ),
-            # Update like count for original tweet
+            # Update like count for target tweet
             turbo_stream.replace(
-              "tweet_#{original_tweet.id}_like_count",
+              "tweet_#{target_tweet.id}_like_count",
               partial: "tweets/like_count",
-              locals: { tweet: original_tweet }
+              locals: { tweet: target_tweet }
             ),
             # Update like buttons for all retweets
-            *original_tweet.retweets.map do |retweet|
+            *(@tweet.is_quote? ? target_tweet.retweets : target_tweet.retweets.where(body: nil)).map do |retweet|
               turbo_stream.replace(
                 "tweet_#{retweet.id}_like_button",
                 partial: "tweets/like_button",
@@ -41,8 +53,8 @@ class LikesController < ApplicationController
             end
           ]
         end
-        format.html { redirect_to @tweet, notice: 'Tweet liked successfully.' }
-        format.json { render json: { status: 'success', likes_count: original_tweet.likes.count } }
+        format.html { redirect_to @tweet, notice: "Tweet liked successfully." }
+        format.json { render json: { status: "success", likes_count: target_tweet.likes.count } }
       end
     else
       respond_to do |format|
@@ -53,37 +65,48 @@ class LikesController < ApplicationController
             locals: { tweet: @tweet }
           )
         end
-        format.html { redirect_to @tweet, alert: 'Unable to like tweet.' }
-        format.json { render json: { status: 'error', message: 'Unable to like tweet' }, status: :unprocessable_entity }
+        format.html { redirect_to @tweet, alert: "Unable to like tweet." }
+        format.json { render json: { status: "error", message: "Unable to like tweet" }, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    # If we're unliking a retweet, get the original tweet
-    original_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
+    # For quotes, we only unlike the quote itself
+    if @tweet.is_quote?
+      target_tweet = @tweet
+    else
+      # For original tweets and retweets, we unlike the original tweet
+      target_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
+    end
 
-    # Find and destroy likes on original tweet and all retweets
-    current_user.likes.where(tweet: [original_tweet, *original_tweet.retweets]).destroy_all
+    # Find and destroy likes on target tweet and all retweets
+    tweets_to_unlike = if @tweet.is_quote?
+      [ target_tweet, *target_tweet.retweets ]
+    else
+      [ target_tweet, *target_tweet.retweets.where(body: nil) ]
+    end
 
-    broadcast_like_update
+    current_user.likes.where(tweet: tweets_to_unlike).destroy_all
+
+    broadcast_like_update(target_tweet)
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          # Update like button for the clicked tweet (retweet or original)
+          # Update like button for the clicked tweet
           turbo_stream.replace(
             "tweet_#{@tweet.id}_like_button",
             partial: "tweets/like_button",
             locals: { tweet: @tweet }
           ),
-          # Update like count for original tweet
+          # Update like count for target tweet
           turbo_stream.replace(
-            "tweet_#{original_tweet.id}_like_count",
+            "tweet_#{target_tweet.id}_like_count",
             partial: "tweets/like_count",
-            locals: { tweet: original_tweet }
+            locals: { tweet: target_tweet }
           ),
           # Update like buttons for all retweets
-          *original_tweet.retweets.map do |retweet|
+          *(@tweet.is_quote? ? target_tweet.retweets : target_tweet.retweets.where(body: nil)).map do |retweet|
             turbo_stream.replace(
               "tweet_#{retweet.id}_like_button",
               partial: "tweets/like_button",
@@ -92,8 +115,8 @@ class LikesController < ApplicationController
           end
         ]
       end
-      format.html { redirect_to @tweet, notice: 'Tweet unliked successfully.' }
-      format.json { render json: { status: 'success', likes_count: original_tweet.likes.count } }
+      format.html { redirect_to @tweet, notice: "Tweet unliked successfully." }
+      format.json { render json: { status: "success", likes_count: target_tweet.likes.count } }
     end
   end
 
@@ -103,19 +126,18 @@ class LikesController < ApplicationController
     @tweet = Tweet.find(params[:tweet_id])
   end
 
-  def broadcast_like_update
-    original_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
-
-    # Broadcast to the original tweet
+  def broadcast_like_update(target_tweet)
+    # Broadcast to the target tweet
     Turbo::StreamsChannel.broadcast_replace_to(
       "tweets",
-      target: "tweet_#{original_tweet.id}_like_count",
+      target: "tweet_#{target_tweet.id}_like_count",
       partial: "tweets/like_count",
-      locals: { tweet: original_tweet }
+      locals: { tweet: target_tweet }
     )
 
     # Broadcast to all retweets of this tweet
-    original_tweet.retweets.each do |retweet|
+    retweets = @tweet.is_quote? ? target_tweet.retweets : target_tweet.retweets.where(body: nil)
+    retweets.each do |retweet|
       # Broadcast like count
       Turbo::StreamsChannel.broadcast_replace_to(
         "tweets",

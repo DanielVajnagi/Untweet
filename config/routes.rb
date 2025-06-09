@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         get  :new_quote
         post :create_quote
       end
-      resources :likes, only: [:create, :destroy]
+      resources :likes, only: [ :create, :destroy ]
     end
   end
 

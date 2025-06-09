@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tweet
-  before_action :set_comment, only: [:destroy]
+  before_action :set_comment, only: [ :destroy ]
 
   def create
     @comment = @tweet.comments.build(comment_params)
@@ -19,13 +19,13 @@ class CommentsController < ApplicationController
             )
           ]
         end
-        format.html { redirect_to @tweet, notice: 'Comment added successfully.' }
-        format.json { render json: { status: 'success', comment_count: @tweet.comments.count } }
+        format.html { redirect_to @tweet, notice: "Comment added successfully." }
+        format.json { render json: { status: "success", comment_count: @tweet.comments.count } }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @tweet, alert: 'Unable to add comment.' }
-        format.json { render json: { status: 'error', message: 'Unable to add comment' }, status: :unprocessable_entity }
+        format.html { redirect_to @tweet, alert: "Unable to add comment." }
+        format.json { render json: { status: "error", message: "Unable to add comment" }, status: :unprocessable_entity }
       end
     end
   end
@@ -43,13 +43,13 @@ class CommentsController < ApplicationController
             )
           ]
         end
-        format.html { redirect_to @tweet, notice: 'Comment removed successfully.' }
-        format.json { render json: { status: 'success', comment_count: @tweet.comments.count } }
+        format.html { redirect_to @tweet, notice: "Comment removed successfully." }
+        format.json { render json: { status: "success", comment_count: @tweet.comments.count } }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @tweet, alert: 'Unable to remove comment.' }
-        format.json { render json: { status: 'error', message: 'Unable to remove comment' }, status: :unprocessable_entity }
+        format.html { redirect_to @tweet, alert: "Unable to remove comment." }
+        format.json { render json: { status: "error", message: "Unable to remove comment" }, status: :unprocessable_entity }
       end
     end
   end

@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy, :retweet, :new_quote, :create_quote]
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :set_tweet, only: [ :show, :edit, :update, :destroy, :retweet, :new_quote, :create_quote ]
 
   # GET /tweets
   def index
@@ -99,13 +99,13 @@ class TweetsController < ApplicationController
             )
           ]
         end
-        format.html { redirect_to tweets_path, notice: 'Tweet retweeted successfully.' }
-        format.json { render json: { status: 'success', retweet_count: original_tweet.retweet_count } }
+        format.html { redirect_to tweets_path, notice: "Tweet retweeted successfully." }
+        format.json { render json: { status: "success", retweet_count: original_tweet.retweet_count } }
       end
     else
       respond_to do |format|
-        format.html { redirect_to tweets_path, alert: 'Unable to retweet.' }
-        format.json { render json: { status: 'error', message: 'Unable to retweet' }, status: :unprocessable_entity }
+        format.html { redirect_to tweets_path, alert: "Unable to retweet." }
+        format.json { render json: { status: "error", message: "Unable to retweet" }, status: :unprocessable_entity }
       end
     end
   end
