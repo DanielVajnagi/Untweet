@@ -1,0 +1,10 @@
+<%# Comment form partial %>
+<div id="new_comment" class="comment-form-container">
+  <%= form_with(model: [@tweet, local_assigns[:comment] || Comment.new], class: "comment-form") do |f| %>
+    <div>
+      <%= f.label :body, t('comments.write_comment'), class: "comment-label" %>
+      <%= f.text_area :body, class: "comment-textarea", required: true, maxlength: 280, style: "overflow: hidden;", data: { controller: "auto-resize", action: "input->auto-resize#resize" } %>
+    </div>
+    <%= f.submit t('comments.submit'), class: "comment-submit" %>
+  <% end %>
+</div>

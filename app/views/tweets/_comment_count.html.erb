@@ -1,7 +1,3 @@
 <span id="tweet_<%= tweet.id %>_comment_count" class="tweet-action-count">
-  <% if tweet.is_retweet? %>
-    <%= tweet.original_tweet.comments.count %>
-  <% else %>
-    <%= tweet.comments.count %>
-  <% end %>
+  <%= tweet.comments.count %>
 </span>

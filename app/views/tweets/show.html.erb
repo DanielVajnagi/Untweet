@@ -8,5 +8,18 @@
     <ul class="tweet-list">
       <%= render partial: 'tweets/show_tweet', locals: { tweet: @tweet } %>
     </ul>
+
+    <% if user_signed_in? %>
+      <div class="comments-section">
+        <h3 class="comments-header"><%= t('comments.title') %></h3>
+        <%= render 'comments/form', comment: Comment.new %>
+      </div>
+    <% end %>
+
+    <div id="comments-list" class="comments-list">
+      <% @tweet.comments.order(created_at: :desc).each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+      <% end %>
+    </div>
   </div>
 </div>

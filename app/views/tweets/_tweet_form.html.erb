@@ -12,7 +12,7 @@
 
         <div>
           <%= form.label :body, t('tweets.add_comment_retweet'), class: 'tweet-label' %>
-          <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280 %>
+          <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280, data: { controller: "auto-resize", action: "input->auto-resize#resize" } %>
         </div>
 
         <div>
@@ -26,7 +26,7 @@
 
         <div>
           <%= form.label :body, t('tweets.add_comment'), class: 'tweet-label' %>
-          <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280 %>
+          <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280, data: { controller: "auto-resize", action: "input->auto-resize#resize" } %>
         </div>
 
         <div>
@@ -40,7 +40,7 @@
 
       <div>
         <%= form.label :body, t('tweets.content'), class: 'tweet-label' %>
-        <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280 %>
+        <%= form.text_area :body, placeholder: t('tweets.share_thoughts'), class: 'tweet-textarea', maxlength: 280, data: { controller: "auto-resize", action: "input->auto-resize#resize" } %>
       </div>
 
       <div>

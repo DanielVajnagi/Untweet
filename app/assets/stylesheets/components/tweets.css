@@ -1,6 +1,6 @@
 @layer components{
-  .tweet-form-container {
-    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto mt-6 border border-gray-100;
+  .tweet-form {
+    @apply bg-white rounded-lg p-6;
   }
 
   .tweet-error {
@@ -24,7 +24,7 @@
   }
 
   .tweet-textarea {
-    @apply w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none transition-all duration-200;
+    @apply w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none overflow-hidden transition-all duration-200;
   }
 
   .tweet-submit {
@@ -32,7 +32,7 @@
   }
 
   .non-logged-in-message {
-    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto text-center mt-6 border border-gray-100;
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-2xl mx-auto text-center mt-6 border border-gray-100;
   }
 
   .login-button {
@@ -75,7 +75,7 @@
   }
 
   .tweet-list {
-    @apply max-w-md mx-auto space-y-4 list-none p-0;
+    @apply max-w-2xl mx-auto space-y-4 list-none p-0;
   }
 
   .tweets-page-container {
@@ -124,7 +124,7 @@
   }
 
   .tweet-body {
-    @apply text-gray-800 mb-3 text-[15px] leading-5;
+    @apply text-gray-800 text-[15px] leading-relaxed break-words whitespace-normal;
   }
 
   .tweet-link {
@@ -159,24 +159,16 @@
     @apply text-sm font-medium;
   }
 
-  .tweet-comment:hover {
-    @apply text-blue-500;
-  }
-
-  .tweet-retweet:hover {
-    @apply text-green-500;
+  .tweet-comment {
+    @apply p-2 text-gray-600 hover:text-blue-500 rounded-full hover:bg-blue-50 transition-colors duration-200;
   }
 
   .tweet-like {
-    @apply flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors duration-200;
+    @apply flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors duration-200 hover:bg-red-50 transition-colors duration-200;
   }
 
   .tweet-like.liked {
-    @apply text-red-500;
-  }
-
-  .tweet-like.liked:hover {
-    @apply text-red-600;
+    @apply text-red-500 hover:bg-red-50 transition-colors duration-200;
   }
 
   .tweet-like .tweet-action-icon {
@@ -191,41 +183,28 @@
     @apply scale-110;
   }
 
-  .tweet-edit:hover {
-    @apply text-yellow-500;
-  }
-
-  .tweet-delete:hover {
-    @apply text-red-500;
-  }
-
   .tweet-retweet-info {
     @apply text-gray-500 text-sm ml-2 flex items-center;
-  }
-
-  .tweet-retweet-info::before {
-    content: "↪";
-    @apply mr-1;
   }
 
   .tweet-original-author {
     @apply text-blue-500 font-medium ml-1 hover:underline;
   }
 
-  .tweet-retweet, .tweet-edit, .tweet-delete {
-    @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors duration-200;
+  .tweet-retweet, .tweet-edit, .tweet-delete, .tweet-comment, .tweet-like {
+    @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full;
   }
 
   .tweet-retweet {
-    @apply text-green-600;
+    @apply p-2 text-gray-600 hover:text-green-500 rounded-full hover:bg-green-50 transition-colors duration-200;
   }
 
   .tweet-edit {
-    @apply text-gray-600;
+    @apply p-2 text-gray-600 hover:text-yellow-500 rounded-full hover:bg-yellow-50 transition-colors duration-200;
   }
 
   .tweet-delete {
-    @apply text-red-600;
+    @apply p-2 text-gray-600 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors duration-200;
   }
 
   .tweet-login-h {

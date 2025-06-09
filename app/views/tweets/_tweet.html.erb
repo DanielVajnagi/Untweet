@@ -3,7 +3,7 @@
   <%= link_to tweet.is_retweet? ? tweet_path(tweet.original_tweet) : tweet_path(tweet), class: "tweet-link" do %>
     <% if tweet.is_retweet? %>
       <div class="tweet-retweet-banner">
-        <span class="tweet-retweet-icon">↪</span>
+        <i class="fa-solid fa-retweet text-sm"> </i>
         <span class="tweet-retweet-text">
           <%= tweet.user.username %> <%= t('tweets.retweeted_by') %> <%= time_ago_in_words_localized(tweet.created_at) %>
         </span>
@@ -20,7 +20,7 @@
               <%= tweet.user.username %>
             <% end %>
           </span>
-          <span class="tweet-time">·
+          <span class="tweet-time"> ·
             <% if tweet.is_retweet?%>
               <%= time_ago_in_words_localized(tweet.original_tweet.created_at) %>
             <% else %>
@@ -28,7 +28,7 @@
             <% end %>
           </span>
           <% if tweet.updated_at != tweet.created_at %>
-            <span class="tweet-edited">· <%= t('tweets.edited') %></span>
+            <span class="tweet-edited"> · <%= t('tweets.edited') %></span>
           <% end %>
         </div>
       </div>
@@ -36,25 +36,25 @@
       <% if tweet.is_quote? %>
         <%= render 'tweets/quote_tweet', tweet: tweet %>
       <% else %>
-          <p class="tweet-body">
+          <div class="tweet-body">
             <% if tweet.is_retweet? %>
               <% if tweet.original_tweet.is_quote? %>
                 <%= render 'tweets/quote_tweet', tweet: tweet.original_tweet %>
               <% else %>
-                <%= tweet.original_tweet.body %>
+                <%= simple_format(tweet.original_tweet.body) %>
               <% end %>
             <% else %>
-              <%= tweet.body %>
+              <%= simple_format(tweet.body) %>
             <% end %>
-          </p>
+          </div>
       <% end %>
     </div>
   <% end %>
 
   <div class="tweet-actions">
     <div class="tweet-action-button">
-      <%= button_to "#", method: :post, class: 'tweet-action tweet-comment', title: t('tweets.reply') do %>
-        <span class="tweet-action-icon">💬</span>
+      <%= link_to tweet_path(tweet.is_retweet? ? tweet.original_tweet : tweet), class: 'tweet-action tweet-comment', title: t('tweets.reply') do %>
+        <i class="fa-regular fa-comment text-lg"></i>
         <%= render 'tweets/comment_count', tweet: tweet %>
       <% end %>
     </div>
@@ -64,7 +64,7 @@
               class="tweet-action tweet-retweet"
               data-action="click->dropdown#toggle"
               title="<%= t('tweets.retweet') %>">
-        <span class="tweet-action-icon">↪</span>
+        <i class="fa-solid fa-retweet text-lg"></i>
         <%= render 'tweets/retweet_count', tweet: tweet %>
       </button>
 
@@ -72,13 +72,13 @@
         <%= link_to retweet_tweet_path(tweet),
             class: "share-option",
             data: { "turbo-method": :post } do %>
-          <span class="share-option-icon">↪</span>
+          <i class="fa-solid fa-retweet text-lg"></i>
           <%= t('tweets.retweet') %>
         <% end %>
 
         <%= link_to new_quote_tweet_path(tweet),
             class: "share-option" do %>
-          <span class="share-option-icon">💭</span>
+          <i class="fa-solid fa-quote-right text-lg"></i>
           <%= t('tweets.quote') %>
         <% end %>
       </div>
@@ -92,14 +92,14 @@
       <% unless tweet.is_retweet? %>
         <div class="tweet-action-button">
           <%= link_to edit_tweet_path(tweet), class: 'tweet-action tweet-edit', title: t('tweets.edit') do %>
-            <span class="tweet-action-icon">✏️</span>
+            <i class="fa-regular fa-pen-to-square text-lg"></i>
           <% end %>
         </div>
       <% end %>
 
       <div class="tweet-action-button">
         <%= button_to tweet_path(tweet), method: :delete, data: { turbo_confirm: t('tweets.confirm_delete') }, class: 'tweet-action tweet-delete', title: t('tweets.delete') do %>
-          <span class="tweet-action-icon">🗑️</span>
+          <i class="fa-regular fa-trash-can text-lg"></i>
         <% end %>
       </div>
     <% end %>
