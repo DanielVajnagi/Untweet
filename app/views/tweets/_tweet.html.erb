@@ -3,7 +3,7 @@
   <%= link_to tweet.is_retweet? ? tweet_path(tweet.original_tweet) : tweet_path(tweet), class: "tweet-link" do %>
     <% if tweet.is_retweet? %>
       <div class="tweet-retweet-banner">
-        <i class="fa-solid fa-retweet text-sm"></i>
+        <i class="fa-solid fa-retweet text-sm"> </i>
         <span class="tweet-retweet-text">
           <%= tweet.user.username %> <%= t('tweets.retweeted_by') %> <%= time_ago_in_words_localized(tweet.created_at) %>
         </span>
@@ -20,7 +20,7 @@
               <%= tweet.user.username %>
             <% end %>
           </span>
-          <span class="tweet-time">·
+          <span class="tweet-time"> ·
             <% if tweet.is_retweet?%>
               <%= time_ago_in_words_localized(tweet.original_tweet.created_at) %>
             <% else %>

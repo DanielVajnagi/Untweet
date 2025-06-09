@@ -1,6 +1,6 @@
 @layer components{
   .tweet-form-container {
-    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto mt-6 border border-gray-100;
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-2xl mx-auto mt-6 border border-gray-100;
   }
 
   .tweet-error {
@@ -32,7 +32,7 @@
   }
 
   .non-logged-in-message {
-    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto text-center mt-6 border border-gray-100;
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-2xl mx-auto text-center mt-6 border border-gray-100;
   }
 
   .login-button {
@@ -75,7 +75,7 @@
   }
 
   .tweet-list {
-    @apply max-w-md mx-auto space-y-4 list-none p-0;
+    @apply max-w-2xl mx-auto space-y-4 list-none p-0;
   }
 
   .tweets-page-container {
@@ -124,7 +124,7 @@
   }
 
   .tweet-body {
-    @apply text-gray-800 mb-3 text-[15px] leading-5;
+    @apply text-gray-800 mb-3 text-[15px] leading-5 break-words;
   }
 
   .tweet-link {
