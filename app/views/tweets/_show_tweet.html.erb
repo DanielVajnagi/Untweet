@@ -1,4 +1,5 @@
-<div class="tweet-content">
+<div class="tweet-content" data-turbo-stream-target="tweet">
+  <%= turbo_stream_from "tweets" %>
   <div class="tweet-header-container">
     <div class="tweet-header-content">
       <span class="tweet-author">
