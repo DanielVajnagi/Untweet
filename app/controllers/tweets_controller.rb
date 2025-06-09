@@ -4,7 +4,6 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    Rails.logger.debug "=== Index Action Started ==="
     @tweets = Tweet.includes(
       :user,
       :likes,
@@ -22,10 +21,6 @@ class TweetsController < ApplicationController
       comments: :user
     ).order(created_at: :desc)
      .limit(20)
-
-    Rails.logger.debug "Initial tweets count: #{@tweets.count}"
-    Rails.logger.debug "Last tweet created at: #{@tweets.last&.created_at}"
-    Rails.logger.debug "=== Index Action Completed ==="
 
     @tweet = Tweet.new
   end
@@ -235,11 +230,6 @@ class TweetsController < ApplicationController
     ).where("created_at < ?", last_created_at)
      .order(created_at: :desc)
      .limit(20)
-
-    Rails.logger.debug "Found #{@tweets.count} tweets"
-    Rails.logger.debug "First tweet created at: #{@tweets.first&.created_at}"
-    Rails.logger.debug "Last tweet created at: #{@tweets.last&.created_at}"
-    Rails.logger.debug "=== Load More Action Completed ==="
 
     respond_to do |format|
       format.turbo_stream
