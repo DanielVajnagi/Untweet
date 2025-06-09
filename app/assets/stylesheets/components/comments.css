@@ -20,7 +20,7 @@
   }
 
   .comment-textarea {
-    @apply w-full min-h-[100px] p-4 border border-gray-300 rounded-md resize-y focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+    @apply w-full min-h-[100px] p-4 border border-gray-300 rounded-md resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
   }
 
   .comment-submit {
@@ -48,7 +48,7 @@
   }
 
   .comment-body {
-    @apply text-gray-700 leading-relaxed;
+    @apply text-gray-700 leading-relaxed break-words;
   }
 
   .comment-actions {

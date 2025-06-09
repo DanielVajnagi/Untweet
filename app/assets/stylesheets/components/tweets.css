@@ -24,7 +24,7 @@
   }
 
   .tweet-textarea {
-    @apply w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none transition-all duration-200;
+    @apply w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none overflow-hidden transition-all duration-200;
   }
 
   .tweet-submit {
@@ -124,7 +124,7 @@
   }
 
   .tweet-body {
-    @apply text-gray-800 mb-3 text-[15px] leading-5 break-words;
+    @apply text-gray-800 text-[15px] leading-relaxed break-words whitespace-normal;
   }
 
   .tweet-link {

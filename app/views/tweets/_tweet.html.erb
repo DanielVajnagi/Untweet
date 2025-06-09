@@ -36,17 +36,17 @@
       <% if tweet.is_quote? %>
         <%= render 'tweets/quote_tweet', tweet: tweet %>
       <% else %>
-          <p class="tweet-body">
+          <div class="tweet-body">
             <% if tweet.is_retweet? %>
               <% if tweet.original_tweet.is_quote? %>
                 <%= render 'tweets/quote_tweet', tweet: tweet.original_tweet %>
               <% else %>
-                <%= tweet.original_tweet.body %>
+                <%= simple_format(tweet.original_tweet.body) %>
               <% end %>
             <% else %>
-              <%= tweet.body %>
+              <%= simple_format(tweet.body) %>
             <% end %>
-          </p>
+          </div>
       <% end %>
     </div>
   <% end %>

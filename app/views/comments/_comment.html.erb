@@ -6,7 +6,7 @@
   </div>
 
   <div class="comment-body">
-    <%= comment.body %>
+    <%= simple_format(comment.body) %>
   </div>
 
   <% if current_user == comment.user %>
