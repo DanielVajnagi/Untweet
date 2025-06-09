@@ -1,0 +1,4 @@
+<div class="flex space-x-4 mb-6">
+  <%= link_to t('admin.dashboard.users'), admin_users_path, class: "px-4 py-2 rounded #{current_page?(admin_users_path) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}" %>
+  <%= link_to t('admin.dashboard.tweets'), admin_tweets_path, class: "px-4 py-2 rounded #{current_page?(admin_tweets_path) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}" %>
+</div>

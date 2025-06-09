@@ -68,7 +68,27 @@ en:
   too_short: "is too short"
   too_long: "is too long"
 
+  # Date and Time
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+    formats:
+      default: "%B %d, %Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+    order:
+      - :month
+      - :day
+      - :year
+
   # Time
+  time:
+    formats:
+      default: "%B %d, %Y at %H:%M"
+      short: "%b %d, %Y"
+      long: "%B %d, %Y at %H:%M"
   datetime:
     distance_in_words:
       about_x_hours:
@@ -106,9 +126,9 @@ en:
         one: "1 second"
         other: "%{count} seconds"
     formats:
-      default: "%B %d, %Y at %I:%M %p"
+      default: "%B %d, %Y at %H:%M"
       short: "%b %d, %Y"
-      long: "%B %d, %Y at %I:%M %p"
+      long: "%B %d, %Y at %H:%M"
 
   # Tweets
   tweets:
@@ -142,31 +162,32 @@ en:
     like: "Like"
     unlike: "Unlike"
     please_login: "Please log in to share your thoughts!"
-    join_conversation: "Join the conversation and connect with others."
+    join_conversation: "Join the conversation and engage with others."
     error_messages:
       header:
-        one: "1 error prohibited this tweet from being saved:"
-        other: "%{count} errors prohibited this tweet from being saved:"
+        one: "1 error prevented this tweet from being saved:"
+        other: "%{count} errors prevented this tweet from being saved:"
     created: "Tweet was successfully created."
     updated: "Tweet was successfully updated."
     deleted: "Tweet was successfully deleted."
     retweeted: "Retweeted!"
-    quoted: "Quote tweet posted!"
+    quoted: "Quote posted!"
     create_error: "Failed to create tweet. Please check the errors below."
     update_error: "Failed to update tweet. Please check the errors below."
-    retweet_error: "Retweet failed."
-    quote_error: "There was an error creating your quote tweet."
-    back_to_tweets: "Back to Tweets"
-    recent_tweets: "Recent Tweets"
-    created_on: "Created on: %{time}"
-    edited_on: "Edited on: %{time}"
-    edit_retweet: "Edit Retweet"
-    edit_quote_tweet: "Edit Quote Tweet"
+    retweet_error: "Failed to retweet."
+    quote_error: "An error occurred while creating the quote."
+    back_to_tweets: "Back to tweets"
+    recent_tweets: "Recent tweets"
+    created_on: "Created: %{time}"
+    edited_on: "Edited: %{time}"
+    edit_retweet: "Edit retweet"
+    edit_quote_tweet: "Edit quote tweet"
+    impersonated: "User impersonated"
 
   # Devise Shared
   devise:
     shared:
-      minimum_password_length: "%{count} characters minimum"
+      minimum_password_length: "minimum %{count} characters"
       already_have_account: "Already have an account?"
       dont_have_account: "Don't have an account?"
       forgot_password: "Forgot your password?"
@@ -177,8 +198,53 @@ en:
       edit:
         title: "Edit %{resource}"
         password_blank: "(leave blank if you don't want to change it)"
-        password_minimum: "%{count} characters minimum"
+        password_minimum: "minimum %{count} characters"
         current_password: "(we need your current password to confirm your changes)"
         update: "Update"
         delete_account: "Delete my account"
         delete_confirm: "Are you sure?"
+    failure:
+      banned: "Your account has been banned. Please contact an administrator."
+      invalid: "Invalid email or password"
+    sessions:
+      user:
+        invalid: "Invalid email or password"
+
+  admin:
+    dashboard:
+      title: "Admin Dashboard"
+      email: "Email"
+      role: "Role"
+      status: "Status"
+      actions: "Actions"
+      impersonate: "Impersonate"
+      stop_impersonating: "Stop Impersonating"
+      impersonating: "Impersonating user: %{email}"
+      change: "Change"
+      banned: "Banned"
+      active: "Active"
+      ban: "Ban"
+      unban: "Unban"
+      true_user: "True user: %{email}"
+      ban_unban_column: "Banning"
+    tweets:
+      title: "Tweet Moderation"
+      user: "User"
+      tweet: "Tweet"
+      created_at: "Created At"
+      actions: "Actions"
+      delete: "Delete"
+  roles:
+    user: "User"
+    admin: "Administrator"
+    superadmin: "Super Administrator"
+  notices:
+    role_updated: "User role updated"
+    impersonating: "Impersonating user: %{email}"
+    stopped_impersonating: "Stopped impersonating"
+    not_authorized: "You are not authorized to access this page"
+    cannot_impersonate_superadmin: "Cannot impersonate super admin"
+    user_banned: "User has been banned"
+    user_unbanned: "User has been unbanned"
+    cannot_ban_superadmin: "Cannot ban super admin"
+    cannot_ban_self: "Cannot ban yourself"

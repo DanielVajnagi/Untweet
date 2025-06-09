@@ -34,6 +34,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
 
+    # Add impersonation prefix if the tweet is created during impersonation
+    if current_user != true_user
+      @tweet.body = "[User impersonated] #{@tweet.body}"
+    end
+
     if @tweet.save
       redirect_to tweets_path, notice: t("tweets.created")
     else
@@ -131,6 +136,11 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweets.build(tweet_params)
     @tweet.origin = @original
     @tweet.user = current_user
+
+    # Add impersonation prefix if the quote is created during impersonation
+    if current_user != true_user
+      @tweet.body = "[User impersonated] #{@tweet.body}"
+    end
 
     if @tweet.save
       redirect_to tweets_path, notice: t("tweets.quoted")
