@@ -1,0 +1,3 @@
+<span id="tweet_<%= tweet.id %>_like_count" class="tweet-action-count">
+  <%= tweet.is_retweet? ? tweet.original_tweet.likes.count : tweet.likes.count %>
+</span>

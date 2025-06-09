@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, only: [ :create, :destroy, :retweet, :new_quote, :create_quote ]
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :set_tweet, only: [ :show, :edit, :update, :destroy, :retweet, :new_quote, :create_quote ]
 
   # GET /tweets
   def index
@@ -82,18 +83,35 @@ class TweetsController < ApplicationController
 
   # POST /tweets/:id/retweet
   def retweet
-    tweet_to_retweet = Tweet.find(params[:id])
+    # If we're retweeting a retweet, get the original tweet
+    original_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
+    @retweet = current_user.tweets.build(origin: original_tweet)
 
-    # Find the original tweet to retweet
-    original_tweet = tweet_to_retweet.original_tweet
-
-    # Create a new retweet of the original tweet
-    retweet = current_user.tweets.build(origin: original_tweet)
-
-    if retweet.save
-      redirect_to tweets_path, notice: t("tweets.retweeted")
+    if @retweet.save
+      broadcast_retweet_update
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "tweet_#{original_tweet.id}_retweet_count",
+              partial: "tweets/retweet_count",
+              locals: { tweet: original_tweet }
+            ),
+            turbo_stream.prepend(
+              "tweet_list",
+              partial: "tweets/tweet",
+              locals: { tweet: @retweet }
+            )
+          ]
+        end
+        format.html { redirect_to tweets_path, notice: "Tweet retweeted successfully." }
+        format.json { render json: { status: "success", retweet_count: original_tweet.retweet_count } }
+      end
     else
-      redirect_to tweets_path, alert: t("tweets.retweet_error")
+      respond_to do |format|
+        format.html { redirect_to tweets_path, alert: "Unable to retweet." }
+        format.json { render json: { status: "error", message: "Unable to retweet" }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -144,5 +162,27 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params.require(:tweet).permit(:body, :origin_id)
+  end
+
+  def broadcast_retweet_update
+    target_tweet = @tweet.is_retweet? ? @tweet.original_tweet : @tweet
+
+    # Broadcast to the original tweet
+    Turbo::StreamsChannel.broadcast_replace_to(
+      "tweets",
+      target: "tweet_#{target_tweet.id}_retweet_count",
+      partial: "tweets/retweet_count",
+      locals: { tweet: target_tweet }
+    )
+
+    # Broadcast to all retweets of this tweet
+    target_tweet.retweets.each do |retweet|
+      Turbo::StreamsChannel.broadcast_replace_to(
+        "tweets",
+        target: "tweet_#{retweet.id}_retweet_count",
+        partial: "tweets/retweet_count",
+        locals: { tweet: retweet }
+      )
+    end
   end
 end

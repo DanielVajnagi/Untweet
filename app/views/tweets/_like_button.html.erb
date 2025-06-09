@@ -1,0 +1,31 @@
+<%# This partial is used by Turbo to update the like button state %>
+<div id="tweet_<%= tweet.id %>_like_button" class="tweet-action-button">
+  <% if local_assigns[:current_user] || (defined?(current_user) && current_user) %>
+    <% user = local_assigns[:current_user] || current_user %>
+    <% if user.likes.exists?(tweet: tweet.is_retweet? ? tweet.original_tweet : tweet) %>
+      <%= button_to tweet_like_path(tweet.is_retweet? ? tweet.original_tweet : tweet, user.likes.find_by(tweet: tweet.is_retweet? ? tweet.original_tweet : tweet)),
+          method: :delete,
+          class: 'tweet-action tweet-like liked',
+          data: { turbo_method: :delete },
+          title: t('tweets.unlike') do %>
+        <span class="tweet-action-icon">❤️</span>
+        <%= render 'tweets/like_count', tweet: tweet %>
+      <% end %>
+    <% else %>
+      <%= button_to tweet_likes_path(tweet.is_retweet? ? tweet.original_tweet : tweet),
+          method: :post,
+          class: 'tweet-action tweet-like',
+          data: { turbo_method: :post },
+          title: t('tweets.like') do %>
+        <span class="tweet-action-icon">🤍</span>
+        <%= render 'tweets/like_count', tweet: tweet %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%# Show like count only for non-logged in users %>
+    <div class="tweet-action tweet-like">
+      <span class="tweet-action-icon">🤍</span>
+      <%= render 'tweets/like_count', tweet: tweet %>
+    </div>
+  <% end %>
+</div>

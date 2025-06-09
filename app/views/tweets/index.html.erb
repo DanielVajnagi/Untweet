@@ -7,7 +7,7 @@
 
   <h2 class="tweet-header"><%= t('tweets.recent_tweets') %></h2>
 
-  <ul class="tweet-list">
+  <ul id="tweet_list" class="tweet-list">
     <%= render partial: 'tweets/tweet', collection: @tweets, as: :tweet %>
   </ul>
 </div>
