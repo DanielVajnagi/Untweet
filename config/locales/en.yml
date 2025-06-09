@@ -177,12 +177,15 @@ en:
     retweet_error: "Failed to retweet."
     quote_error: "An error occurred while creating the quote."
     back_to_tweets: "Back to tweets"
-    recent_tweets: "Recent tweets"
+    recent_tweets: "Recent Tweets"
     created_on: "Created: %{time}"
     edited_on: "Edited: %{time}"
     edit_retweet: "Edit retweet"
     edit_quote_tweet: "Edit quote tweet"
     impersonated: "User impersonated"
+    loading_more: "Loading more tweets..."
+    no_more_tweets: "No more tweets to load"
+    error_loading: "Error loading tweets"
 
   # Devise Shared
   devise:

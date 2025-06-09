@@ -1,16 +1,48 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :authenticate_user!, except: [ :index, :show, :load_more ]
   before_action :set_tweet, only: [ :show, :edit, :update, :destroy, :retweet, :new_quote, :create_quote ]
 
   # GET /tweets
   def index
-    @tweets = Tweet.all.order(created_at: :desc)
+    @tweets = Tweet.includes(
+      :user,
+      :likes,
+      :comments,
+      :origin,
+      origin: [
+        :user,
+        :likes,
+        :comments,
+        :retweets,
+        retweets: [ :user, :likes, :comments ]
+      ],
+      retweets: [ :user, :likes, :comments ],
+      likes: :user,
+      comments: :user
+    ).order(created_at: :desc)
+     .limit(20)
+
     @tweet = Tweet.new
   end
 
   # GET /tweets/1
   def show
-    @tweet = Tweet.find(params[:id])
+    @tweet = Tweet.includes(
+      :user,
+      :likes,
+      :comments,
+      :origin,
+      origin: [
+        :user,
+        :likes,
+        :comments,
+        :retweets,
+        retweets: [ :user, :likes, :comments ]
+      ],
+      retweets: [ :user, :likes, :comments ],
+      likes: :user,
+      comments: :user
+    ).find(params[:id])
   end
 
   # GET /tweets/new
@@ -88,6 +120,8 @@ class TweetsController < ApplicationController
     @retweet = current_user.tweets.build(origin: original_tweet)
 
     if @retweet.save
+      # Reload the original tweet with all necessary associations
+      original_tweet.reload
       broadcast_retweet_update
       respond_to do |format|
         format.turbo_stream do
@@ -128,7 +162,22 @@ class TweetsController < ApplicationController
 
   # POST /tweets/:id/create_quote
   def create_quote
-    @original = Tweet.find(params[:id])
+    @original = Tweet.includes(
+      :user,
+      :likes,
+      :comments,
+      :origin,
+      origin: [
+        :user,
+        :likes,
+        :comments,
+        :retweets,
+        retweets: [ :user, :likes, :comments ]
+      ],
+      retweets: [ :user, :likes, :comments ],
+      likes: :user,
+      comments: :user
+    ).find(params[:id])
 
     # Get the original tweet if this is a retweet
     @original = @original.original_tweet if @original.is_retweet?
@@ -152,6 +201,38 @@ class TweetsController < ApplicationController
 
       flash.now[:alert] = t("tweets.quote_error")
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def load_more
+    Rails.logger.debug "=== Load More Action Started ==="
+    Rails.logger.debug "Params: #{params.inspect}"
+    Rails.logger.debug "Last created at from params: #{params[:last_created_at]}"
+
+    last_created_at = Time.parse(params[:last_created_at])
+    Rails.logger.debug "Parsed last_created_at: #{last_created_at}"
+
+    @tweets = Tweet.includes(
+      :user,
+      :likes,
+      :comments,
+      :origin,
+      origin: [
+        :user,
+        :likes,
+        :comments,
+        :retweets,
+        retweets: [ :user, :likes, :comments ]
+      ],
+      retweets: [ :user, :likes, :comments ],
+      likes: :user,
+      comments: :user
+    ).where("created_at < ?", last_created_at)
+     .order(created_at: :desc)
+     .limit(20)
+
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 
