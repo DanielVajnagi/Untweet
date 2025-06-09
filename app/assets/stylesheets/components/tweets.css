@@ -1,0 +1,291 @@
+@layer components{
+  .tweet-form-container {
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto mt-6 border border-gray-100;
+  }
+
+  .tweet-error {
+    @apply bg-red-100 border-2 border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4 block;
+  }
+
+  .tweet-error strong {
+    @apply font-bold text-red-700;
+  }
+
+  .tweet-error ul {
+    @apply mt-2 space-y-1;
+  }
+
+  .tweet-error li {
+    @apply text-red-700;
+  }
+
+  .tweet-label {
+    @apply block text-lg font-medium mb-2 text-gray-700;
+  }
+
+  .tweet-textarea {
+    @apply w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none transition-all duration-200;
+  }
+
+  .tweet-submit {
+    @apply w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+  }
+
+  .non-logged-in-message {
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 max-w-md mx-auto text-center mt-6 border border-gray-100;
+  }
+
+  .login-button {
+    @apply bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+  }
+
+  .signup-button {
+    @apply ml-2 bg-green-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-600 transition duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50;
+  }
+
+  .tweet-header {
+    @apply text-2xl font-semibold mb-4 text-center text-gray-800;
+  }
+
+  .original-tweet-container {
+    @apply bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer;
+    border: 1px solid rgb(207, 217, 222) !important;
+    border-radius: 16px;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
+  }
+
+  .original-tweet-header {
+    @apply flex items-start gap-1 mb-2 text-[15px] whitespace-nowrap;
+  }
+
+  .original-tweet-author {
+    @apply text-gray-800 text-[15px];
+    font-weight: 700;
+  }
+
+  .original-tweet-time {
+    @apply text-gray-500 text-sm;
+  }
+
+  .original-tweet-body {
+    @apply text-gray-800 text-[15px] leading-normal;
+    padding: 0 2px;
+  }
+
+  .tweet-list {
+    @apply max-w-md mx-auto space-y-4 list-none p-0;
+  }
+
+  .tweets-page-container {
+    @apply max-w-2xl mx-auto px-4 py-6;
+  }
+
+  .tweet-item {
+    @apply bg-white p-4 mb-4 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200 relative;
+  }
+
+  .tweet-retweet-banner {
+    @apply flex items-center text-gray-500 text-sm mb-2 pb-2 border-b border-gray-200 bg-gray-50 -mt-4 -mx-4 px-4 pt-2 rounded-t-lg;
+  }
+
+  .tweet-retweet-icon {
+    @apply mr-1;
+  }
+
+  .tweet-retweet-text {
+    @apply font-medium;
+  }
+
+  .tweet-content {
+    @apply relative;
+  }
+
+  .tweet-header-container {
+    @apply flex items-center justify-between mb-2;
+  }
+
+  .tweet-header-content {
+    @apply flex items-center text-[15px] whitespace-nowrap;
+  }
+
+  .tweet-author {
+    font-weight: 700;
+    color: rgb(15, 20, 25);
+  }
+
+  .tweet-time {
+    @apply text-gray-500 font-normal;
+  }
+
+  .tweet-edited {
+    @apply text-gray-500 font-normal;
+  }
+
+  .tweet-body {
+    @apply text-gray-800 mb-3 text-[15px] leading-5;
+  }
+
+  .tweet-link {
+    @apply block hover:bg-gray-50 rounded-lg transition-colors duration-200;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    margin: -12px;
+  }
+
+  .quote-tweet-content {
+    @apply mb-3;
+  }
+
+  .tweet-actions {
+    @apply flex items-center justify-start gap-6 mt-4 pt-3 border-t border-gray-100;
+  }
+
+  .tweet-action-button {
+    @apply relative;
+  }
+
+  .tweet-action {
+    @apply flex items-center gap-2 text-gray-600 hover:text-blue-500 transition-colors duration-200;
+  }
+
+  .tweet-action-icon {
+    @apply text-lg;
+  }
+
+  .tweet-action-count {
+    @apply text-sm font-medium;
+  }
+
+  .tweet-comment {
+    @apply p-2 text-gray-600 hover:text-blue-500 rounded-full hover:bg-blue-50 transition-colors duration-200;
+  }
+
+  .tweet-like {
+    @apply flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors duration-200 hover:bg-red-50 transition-colors duration-200;
+  }
+
+  .tweet-like.liked {
+    @apply text-red-500 hover:bg-red-50 transition-colors duration-200;
+  }
+
+  .tweet-like .tweet-action-icon {
+    @apply transition-transform duration-200;
+  }
+
+  .tweet-like:hover .tweet-action-icon {
+    @apply scale-110;
+  }
+
+  .tweet-like.liked .tweet-action-icon {
+    @apply scale-110;
+  }
+
+  .tweet-retweet-info {
+    @apply text-gray-500 text-sm ml-2 flex items-center;
+  }
+
+  .tweet-original-author {
+    @apply text-blue-500 font-medium ml-1 hover:underline;
+  }
+
+  .tweet-retweet, .tweet-edit, .tweet-delete, .tweet-comment, .tweet-like {
+    @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full;
+  }
+
+  .tweet-retweet {
+    @apply p-2 text-gray-600 hover:text-green-500 rounded-full hover:bg-green-50 transition-colors duration-200;
+  }
+
+  .tweet-edit {
+    @apply p-2 text-gray-600 hover:text-yellow-500 rounded-full hover:bg-yellow-50 transition-colors duration-200;
+  }
+
+  .tweet-delete {
+    @apply p-2 text-gray-600 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors duration-200;
+  }
+
+  .tweet-login-h {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  .tweet-login {
+    @apply mb-4;
+  }
+
+  .share-menu {
+    display: none;
+    width: 144px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 4px;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 9999;
+  }
+
+  .share-menu.show {
+    display: block;
+    animation: fadeIn 0.1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .share-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #374151;
+    background-color: #f3f4f6;
+    transition: background-color 0.15s;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    margin: 0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .share-option:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .share-option:hover {
+    background-color: #e5e7eb;
+  }
+
+  .share-option:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .share-option:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .share-option-icon {
+    color: #4b5563;
+  }
+}
