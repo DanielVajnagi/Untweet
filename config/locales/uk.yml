@@ -152,6 +152,7 @@ uk:
     edited_on: "Відредаговано: %{time}"
     edit_retweet: "Редагувати ретвіт"
     edit_quote_tweet: "Редагувати цитату"
+    impersonated: "Користувач імперсонований"
 
   # Devise Shared
   devise:
@@ -172,3 +173,48 @@ uk:
         update: "Оновити"
         delete_account: "Видалити мій обліковий запис"
         delete_confirm: "Ви впевнені?"
+    failure:
+      banned: "Ваш обліковий запис заблоковано. Будь ласка, зверніться до адміністратора."
+      invalid: "Невірний email або пароль"
+    sessions:
+      user:
+        invalid: "Невірний email або пароль"
+
+  admin:
+    dashboard:
+      title: "Панель адміністратора"
+      email: "Email"
+      role: "Роль"
+      status: "Статус"
+      actions: "Дії"
+      impersonate: "Імперсонувати"
+      stop_impersonating: "Зупинити імперсонацію"
+      impersonating: "Імперсонуємо користувача: %{email}"
+      change: "Змінити"
+      banned: "Заблокований"
+      active: "Активний"
+      ban: "Заблокувати"
+      unban: "Розблокувати"
+      true_user: "Справжній користувач: %{email}"
+      ban_unban_column: "Блокування"
+    tweets:
+      title: "Модерація твітів"
+      user: "Користувач"
+      tweet: "Твіт"
+      created_at: "Створено"
+      actions: "Дії"
+      delete: "Видалити"
+  roles:
+    user: "Користувач"
+    admin: "Адміністратор"
+    superadmin: "Супер-адміністратор"
+  notices:
+    role_updated: "Роль користувача оновлено"
+    impersonating: "Імперсонуємо користувача: %{email}"
+    stopped_impersonating: "Імперсонацію зупинено"
+    not_authorized: "Ви не маєте доступу до цієї сторінки"
+    cannot_impersonate_superadmin: "Неможливо імперсонувати супер-адміністратора"
+    user_banned: "Користувача заблоковано"
+    user_unbanned: "Користувача розблоковано"
+    cannot_ban_superadmin: "Неможливо заблокувати супер-адміністратора"
+    cannot_ban_self: "Неможливо заблокувати себе"
