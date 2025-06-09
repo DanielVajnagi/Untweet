@@ -1,0 +1,113 @@
+@layer components {
+  .tweet-item {
+    @apply bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm;
+  }
+
+  .tweet-link {
+    @apply block text-gray-900 no-underline hover:no-underline;
+  }
+
+  .tweet-retweet-banner {
+    @apply flex items-center gap-2 text-gray-500 text-sm mb-2;
+  }
+
+  .tweet-header-container {
+    @apply mb-2;
+  }
+
+  .tweet-header-content {
+    @apply flex items-center gap-2;
+  }
+
+  .tweet-author {
+    @apply font-semibold text-gray-900;
+  }
+
+  .tweet-time {
+    @apply text-gray-500 text-sm;
+  }
+
+  .tweet-edited {
+    @apply text-gray-500 text-sm;
+  }
+
+  .tweet-body {
+    @apply text-gray-800 mb-4;
+  }
+
+  .tweet-full-time {
+    @apply text-gray-500 text-sm mb-4;
+  }
+
+  .tweet-actions {
+    @apply flex items-center gap-4 mt-2;
+  }
+
+  .tweet-action-button {
+    @apply relative;
+  }
+
+  .tweet-action {
+    @apply flex items-center gap-1 !text-gray-500 transition-colors duration-200;
+  }
+
+  .tweet-action-count {
+    @apply text-sm !text-gray-500;
+  }
+
+  .tweet-comment {
+    @apply !text-gray-500 hover:text-blue-500;
+  }
+
+  .tweet-comment:hover .tweet-action-count {
+    @apply text-blue-500;
+  }
+
+  .tweet-retweet {
+    @apply !text-gray-500 hover:text-green-500;
+  }
+
+  .tweet-retweet:hover .tweet-action-count {
+    @apply text-green-500;
+  }
+
+  .tweet-like {
+    @apply !text-gray-500 hover:text-red-500;
+  }
+
+  .tweet-like:hover .tweet-action-count {
+    @apply text-red-500;
+  }
+
+  .tweet-like.liked {
+    @apply text-red-500;
+  }
+
+  .tweet-like.liked .tweet-action-count {
+    @apply text-red-500;
+  }
+
+  .tweet-edit {
+    @apply !text-gray-500 hover:text-blue-500;
+  }
+
+  .tweet-delete {
+    @apply !text-gray-500 hover:text-red-500;
+  }
+
+  .share-menu {
+    @apply absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden;
+  }
+
+  .share-menu.show {
+    @apply block;
+  }
+
+  .share-option {
+    @apply flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100;
+  }
+
+  .share-option-icon {
+    @apply text-gray-500;
+  }
+}

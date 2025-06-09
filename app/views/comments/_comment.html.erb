@@ -1,0 +1,23 @@
+<%# Comment partial %>
+<div id="<%= dom_id(comment) %>" class="comment-item">
+  <div class="comment-header">
+    <span class="comment-author"><%= comment.user.username %></span>
+    <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> <%= t('comments.ago') %></span>
+  </div>
+
+  <div class="comment-body">
+    <%= comment.body %>
+  </div>
+
+  <% if current_user == comment.user %>
+    <div class="comment-actions">
+      <%= button_to tweet_comment_path(comment.tweet, comment),
+                    method: :delete,
+                    class: "comment-delete",
+                    form: { data: { turbo_confirm: t('comments.confirm_delete') } },
+                    title: t('comments.delete') do %>
+        <i class="fa-regular fa-trash-can text-lg"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

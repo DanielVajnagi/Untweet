@@ -12,20 +12,25 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
+            turbo_stream.prepend("comments-list", partial: "comments/comment", locals: { comment: @comment }),
             turbo_stream.replace(
               "tweet_#{@tweet.id}_comment_count",
               partial: "tweets/comment_count",
               locals: { tweet: @tweet }
-            )
+            ),
+            turbo_stream.update("new_comment", partial: "comments/form", locals: { comment: Comment.new })
           ]
         end
-        format.html { redirect_to @tweet, notice: "Comment added successfully." }
+        format.html { redirect_to @tweet, notice: t("comments.created") }
         format.json { render json: { status: "success", comment_count: @tweet.comments.count } }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @tweet, alert: "Unable to add comment." }
-        format.json { render json: { status: "error", message: "Unable to add comment" }, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("new_comment", partial: "comments/form", locals: { comment: @comment })
+        end
+        format.html { redirect_to @tweet, alert: t("comments.error") }
+        format.json { render json: { status: "error", message: t("comments.error") }, status: :unprocessable_entity }
       end
     end
   end
@@ -36,6 +41,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
+            turbo_stream.remove("comment_#{@comment.id}"),
             turbo_stream.replace(
               "tweet_#{@tweet.id}_comment_count",
               partial: "tweets/comment_count",
@@ -43,13 +49,13 @@ class CommentsController < ApplicationController
             )
           ]
         end
-        format.html { redirect_to @tweet, notice: "Comment removed successfully." }
+        format.html { redirect_to @tweet, notice: t("comments.deleted") }
         format.json { render json: { status: "success", comment_count: @tweet.comments.count } }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @tweet, alert: "Unable to remove comment." }
-        format.json { render json: { status: "error", message: "Unable to remove comment" }, status: :unprocessable_entity }
+        format.html { redirect_to @tweet, alert: t("comments.delete_error") }
+        format.json { render json: { status: "error", message: t("comments.delete_error") }, status: :unprocessable_entity }
       end
     end
   end
