@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     # Defines the root path route ("/")
     root "tweets#index"
 
+    # Load more tweets route
+    get "tweets/load_more", to: "tweets#load_more"
+
     resources :tweets do
       member do
         post :retweet
@@ -38,6 +41,7 @@ Rails.application.routes.draw do
         post :create_quote
       end
       resources :likes, only: [ :create, :destroy ]
+      resources :comments, only: [ :create, :destroy ]
     end
   end
 

@@ -1,0 +1,15 @@
+<%# Debug information %>
+<% Rails.logger.debug "=== Turbo Stream Template Started ===" %>
+<% Rails.logger.debug "Number of tweets to render: #{@tweets.count}" %>
+
+<% if @tweets.any? %>
+  <%= turbo_stream.append "tweet_list" do %>
+    <% @tweets.each do |tweet| %>
+      <%= render "tweets/tweet", tweet: tweet %>
+    <% end %>
+  <% end %>
+<% else %>
+  <% Rails.logger.debug "No tweets to append" %>
+<% end %>
+
+<% Rails.logger.debug "=== Turbo Stream Template Completed ===" %>
