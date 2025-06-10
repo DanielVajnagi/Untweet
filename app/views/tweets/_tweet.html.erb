@@ -1,3 +1,4 @@
+<% return unless tweet.present? %>
 <li class="tweet-item" data-controller="dropdown" data-turbo-stream-target="tweet" data-created-at="<%= tweet.created_at.iso8601 %>">
   <%= turbo_stream_from "tweets" %>
   <%= link_to tweet.is_retweet? ? tweet_path(tweet.original_tweet) : tweet_path(tweet), class: "tweet-link" do %>

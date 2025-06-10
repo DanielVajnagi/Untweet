@@ -1,13 +1,28 @@
 class SearchService
   def self.search_users(query, page: 1, per_page: 20)
-    UserIndex
-      .query(multi_match: {
-        query: query,
-        fields: [ "username^3", "email" ],
-        fuzziness: "AUTO"
+    Rails.logger.debug "Searching for users with query: #{query}"
+    results = UserIndex
+      .query(bool: {
+        should: [
+          {
+            multi_match: {
+              query: query,
+              fields: ["username^3", "email"],
+              fuzziness: "AUTO"
+            }
+          },
+          {
+            prefix: {
+              username: query.downcase
+            }
+          }
+        ]
       })
       .limit(per_page)
       .objects
+    Rails.logger.debug "Found #{results.count} users"
+    Rails.logger.debug "Users found: #{results.map(&:username).join(', ')}"
+    results
   end
 
   def self.search_tweets(query, page: 1, per_page: 20)
