@@ -39,7 +39,7 @@ group :development, :test do
 
   gem "rspec-rails", "~> 7.0.0"
 
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 6.5"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
