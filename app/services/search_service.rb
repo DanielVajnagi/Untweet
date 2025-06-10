@@ -3,8 +3,8 @@ class SearchService
     UserIndex
       .query(multi_match: {
         query: query,
-        fields: ['username^3', 'email'],
-        fuzziness: 'AUTO'
+        fields: [ "username^3", "email" ],
+        fuzziness: "AUTO"
       })
       .limit(per_page)
       .objects
@@ -14,8 +14,8 @@ class SearchService
     TweetIndex
       .query(multi_match: {
         query: query,
-        fields: ['body^3', 'user_name^2', 'user_email'],
-        fuzziness: 'AUTO'
+        fields: [ "body^3", "user_name^2", "user_email" ],
+        fuzziness: "AUTO"
       })
       .limit(per_page)
       .objects

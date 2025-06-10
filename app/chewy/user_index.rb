@@ -3,9 +3,9 @@ class UserIndex < Chewy::Index
 
   field :email
   field :username
-  field :created_at, type: 'date'
-  field :updated_at, type: 'date'
+  field :created_at, type: "date"
+  field :updated_at, type: "date"
   field :role
-  field :banned, type: 'boolean'
-  field :remember_created_at, type: 'date'
+  field :banned, type: "boolean"
+  field :remember_created_at, type: "date"
 end

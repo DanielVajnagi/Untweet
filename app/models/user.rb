@@ -11,7 +11,7 @@
 #  updated_at          :datetime         not null
 #
 class User < ApplicationRecord
-  update_index('user_index') { self }
+  update_index("user_index") { self }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable :recoverable,

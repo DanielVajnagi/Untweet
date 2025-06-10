@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Tweet < ApplicationRecord
-  update_index('tweet_index') { self }
+  update_index("tweet_index") { self }
 
   belongs_to :user
   belongs_to :origin, class_name: "Tweet", optional: true
