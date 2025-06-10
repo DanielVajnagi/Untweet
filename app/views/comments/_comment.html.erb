@@ -1,7 +1,9 @@
 <%# Comment partial %>
 <div id="<%= dom_id(comment) %>" class="comment-item">
   <div class="comment-header">
-    <span class="comment-author"><%= comment.user.username %></span>
+    <%= link_to user_path(comment.user.username), class: "comment-author" do %>
+      <%= comment.user.username %>
+    <% end %>
     <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> <%= t('comments.ago') %></span>
   </div>
 

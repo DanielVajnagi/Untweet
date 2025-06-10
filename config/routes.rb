@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     # Load more tweets route
     get "tweets/load_more", to: "tweets#load_more"
 
+    # User profile route
+    get "users/:username", to: "users#show", as: :user
+
     resources :tweets do
       member do
         post :retweet

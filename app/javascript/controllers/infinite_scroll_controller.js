@@ -103,7 +103,10 @@ export default class extends Controller {
 
     try {
       console.log("Fetching more tweets...")
-      const url = `/tweets/load_more?last_created_at=${this.lastCreatedAtValue}`
+      // Check if we're on a user's profile page
+      const isUserProfile = window.location.pathname.match(/^\/[^\/]+\/users\/([^\/]+)$/)
+      const username = isUserProfile ? isUserProfile[1] : null
+      const url = `/tweets/load_more?last_created_at=${this.lastCreatedAtValue}${username ? `&username=${username}` : ''}`
       console.log("Request URL:", url)
 
       const response = await fetch(url, {

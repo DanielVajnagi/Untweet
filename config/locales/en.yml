@@ -47,6 +47,8 @@ en:
   signup: "Sign Up"
   edit_profile: "Edit Profile"
   welcome_user: "Welcome, %{username}!"
+  welcome_user_html: "Welcome, %{username}!"
+  joined: "Joined"
 
   # Messages
   success: "Success"
