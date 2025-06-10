@@ -4,9 +4,13 @@
     <div class="tweet-header-content">
       <span class="tweet-author">
         <% if tweet.is_retweet?%>
-          <%= tweet.original_tweet.user.username %>
+          <%= link_to user_path(tweet.original_tweet.user.username), class: "tweet-author-link" do %>
+            <%= tweet.original_tweet.user.username %>
+          <% end %>
         <% else %>
-          <%= tweet.user.username %>
+          <%= link_to user_path(tweet.user.username), class: "tweet-author-link" do %>
+            <%= tweet.user.username %>
+          <% end %>
         <% end %>
       </span>
     </div>

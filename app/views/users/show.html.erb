@@ -1,0 +1,26 @@
+<div class="tweets-page-container">
+  <div class="tweet-show-header">
+    <h2 class="tweet-header"><%= @user.username %></h2>
+    <%= link_to t('tweets.back_to_tweets'), tweets_path, class: 'back-button' %>
+  </div>
+
+  <div class="tweet-show-container">
+    <div class="bg-white rounded-lg p-6 mb-6">
+      <div class="text-gray-600">
+        <p><%= t('joined') %> <%= time_ago_in_words_localized(@user.created_at) %></p>
+      </div>
+    </div>
+
+    <div data-controller="infinite-scroll"
+         data-infinite-scroll-last-created-at-value="<%= @tweets.last&.created_at&.iso8601 %>"
+         data-infinite-scroll-loading-message-value="<%= t('tweets.loading_more') %>"
+         data-infinite-scroll-no-more-tweets-message-value="<%= t('tweets.no_more_tweets') %>"
+         data-infinite-scroll-error-message-value="<%= t('tweets.error_loading') %>">
+      <ul id="tweet_list" class="tweet-list">
+        <%= render partial: 'tweets/tweet', collection: @tweets, as: :tweet %>
+      </ul>
+
+      <div data-infinite-scroll-target="container"></div>
+    </div>
+  </div>
+</div>

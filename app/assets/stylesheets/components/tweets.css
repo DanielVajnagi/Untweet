@@ -288,4 +288,12 @@
   .share-option-icon {
     color: #4b5563;
   }
+
+  .tweet-author-link {
+    @apply text-gray-900 hover:text-blue-500 transition-colors duration-200;
+  }
+
+  .tweet-author-link:hover {
+    @apply underline;
+  }
 }

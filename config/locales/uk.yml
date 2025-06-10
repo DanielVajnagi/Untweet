@@ -18,6 +18,8 @@ uk:
   signup: "Зареєструватися"
   edit_profile: "Редагувати профіль"
   welcome_user: "Ласкаво просимо, %{username}!"
+  welcome_user_html: "Ласкаво просимо, %{username}!"
+  joined: "Приєднався"
 
   # Messages
   success: "Успішно"

@@ -205,12 +205,8 @@ class TweetsController < ApplicationController
   end
 
   def load_more
-    Rails.logger.debug "=== Load More Action Started ==="
-    Rails.logger.debug "Params: #{params.inspect}"
-    Rails.logger.debug "Last created at from params: #{params[:last_created_at]}"
-
-    last_created_at = Time.parse(params[:last_created_at])
-    Rails.logger.debug "Parsed last_created_at: #{last_created_at}"
+    last_created_at = params[:last_created_at]
+    username = params[:username]
 
     @tweets = Tweet.includes(
       :user,
@@ -227,9 +223,16 @@ class TweetsController < ApplicationController
       retweets: [ :user, :likes, :comments ],
       likes: :user,
       comments: :user
-    ).where("created_at < ?", last_created_at)
-     .order(created_at: :desc)
-     .limit(20)
+    )
+
+    # If username is provided, filter tweets for that user
+    if username.present?
+      @tweets = @tweets.where(user: User.find_by!(username: username))
+    end
+
+    @tweets = @tweets.where("created_at < ?", last_created_at)
+                    .order(created_at: :desc)
+                    .limit(20)
 
     respond_to do |format|
       format.turbo_stream
