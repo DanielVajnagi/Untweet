@@ -63,3 +63,4 @@ gem "tailwindcss-rails", "~> 3.0"
 
 gem "devise", "~> 4.9"
 gem "faker"
+gem "chewy", "~> 7.3"

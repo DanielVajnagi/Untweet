@@ -190,3 +190,11 @@ uk:
     deleted: "Коментар успішно видалено"
     error: "Помилка при створенні коментаря"
     delete_error: "Помилка при видаленні коментаря"
+
+  search:
+    results_title: "Результати пошуку"
+    placeholder: "Пошук користувачів та твітів..."
+    button_text: "Пошук"
+    users_section_title: "Користувачі"
+    tweets_section_title: "Твіти"
+    no_results: "Нічого не знайдено за запитом \"%{query}\""

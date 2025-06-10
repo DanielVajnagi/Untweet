@@ -46,6 +46,8 @@ Rails.application.routes.draw do
       resources :likes, only: [ :create, :destroy ]
       resources :comments, only: [ :create, :destroy ]
     end
+
+    get "search", to: "search#index"
   end
 
   # Redirect root to default locale

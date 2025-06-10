@@ -86,6 +86,10 @@ GEM
     brakeman (6.2.1)
       racc
     builder (3.3.0)
+    chewy (7.6.0)
+      activesupport (>= 5.2)
+      elasticsearch (>= 7.14.0, < 8)
+      elasticsearch-dsl
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -101,6 +105,16 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     drb (2.2.1)
+    elasticsearch (7.17.11)
+      elasticsearch-api (= 7.17.11)
+      elasticsearch-transport (= 7.17.11)
+    elasticsearch-api (7.17.11)
+      multi_json
+    elasticsearch-dsl (0.1.10)
+    elasticsearch-transport (7.17.11)
+      base64
+      faraday (>= 1, < 3)
+      multi_json
     erubi (1.13.0)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
@@ -109,6 +123,12 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
+    faraday (2.13.1)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -136,6 +156,9 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.2)
+    multi_json (1.15.0)
+    net-http (0.6.0)
+      uri
     net-imap (0.5.1)
       date
       net-protocol
@@ -284,6 +307,7 @@ GEM
     tzinfo-data (1.2024.1)
       tzinfo (>= 1.0.0)
     unicode-display_width (2.5.0)
+    uri (1.0.3)
     useragent (0.16.10)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -305,6 +329,7 @@ DEPENDENCIES
   annotate
   bootsnap
   brakeman
+  chewy (~> 7.3)
   debug
   devise (~> 4.9)
   factory_bot_rails
