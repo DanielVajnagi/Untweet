@@ -192,9 +192,9 @@ uk:
     delete_error: "Помилка при видаленні коментаря"
 
   search:
-    placeholder: "Пошук твітів та користувачів..."
-    search_results: "Результати пошуку для '%{query}'"
-    tweets: "Твіти"
-    users: "Користувачі"
-    view_profile: "Переглянути профіль"
-    no_results: "Нічого не знайдено"
+    results_title: "Результати пошуку"
+    placeholder: "Пошук користувачів та твітів..."
+    button_text: "Пошук"
+    users_section_title: "Користувачі"
+    tweets_section_title: "Твіти"
+    no_results: "Нічого не знайдено за запитом \"%{query}\""

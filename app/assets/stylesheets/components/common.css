@@ -2,15 +2,19 @@
   .navbar {
     @apply bg-blue-500 p-4;
   }
-  
+
   .navbar .container {
-    @apply mx-auto flex justify-between items-center;
+    @apply mx-auto flex items-center gap-4;
   }
-  
+
+  .navbar .nav-links {
+    @apply flex items-center gap-4 flex-shrink-0;
+  }
+
   .navbar .title {
-    @apply text-white text-lg font-semibold;
+    @apply text-white text-lg font-semibold flex-shrink-0;
   }
-  
+
   .navbar .link {
     @apply text-white ml-4;
   }

@@ -1,21 +1,20 @@
 <nav class="navbar">
   <div class="container">
     <%= link_to t('home'), root_path, class: "title" %>
+      <%= form_tag search_path, method: :get, class: "search-form" do %>
+        <div class="relative">
+          <%= text_field_tag :q, params[:q],
+              class: "search-input",
+              placeholder: t('search.placeholder'),
+              "data-controller": "search",
+              "data-action": "input->search#submit" %>
+          <button type="submit" class="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      <% end %>
     <div class="nav-links">
       <% if user_signed_in? %>
-        <%= form_tag search_path, method: :get, class: "search-form" do %>
-          <div class="relative">
-            <%= text_field_tag :q, params[:q],
-                class: "search-input",
-                placeholder: t('search.placeholder'),
-                "data-controller": "search",
-                "data-action": "input->search#submit" %>
-            <button type="submit" class="search-button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        <% end %>
-
         <span class="text-white">
           <%= t('welcome_user_html', username: link_to(current_user.username, "/#{params[:locale] || I18n.default_locale}/users/#{current_user.username}", class: 'text-white hover:text-gray-200')).html_safe %>
         </span>

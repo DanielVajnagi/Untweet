@@ -267,9 +267,9 @@ en:
     delete_error: "Error deleting comment"
 
   search:
-    placeholder: "Search tweets and users..."
-    search_results: "Search results for '%{query}'"
-    tweets: "Tweets"
-    users: "Users"
-    view_profile: "View Profile"
-    no_results: "No results found"
+    results_title: "Search Results"
+    placeholder: "Search users and tweets..."
+    button_text: "Search"
+    users_section_title: "Users"
+    tweets_section_title: "Tweets"
+    no_results: "No results found for \"%{query}\""
