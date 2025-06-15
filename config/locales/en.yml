@@ -265,3 +265,11 @@ en:
     deleted: "Comment was successfully deleted"
     error: "Error creating comment"
     delete_error: "Error deleting comment"
+
+  search:
+    results_title: "Search Results"
+    placeholder: "Search users and tweets..."
+    button_text: "Search"
+    users_section_title: "Users"
+    tweets_section_title: "Tweets"
+    no_results: "No results found for \"%{query}\""

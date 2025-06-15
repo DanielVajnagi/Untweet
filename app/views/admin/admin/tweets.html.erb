@@ -17,7 +17,7 @@
         <tbody class="divide-y divide-gray-200">
           <% @tweets.each do |tweet| %>
             <tr>
-              <td class="px-6 py-4 whitespace-nowrap"><%= tweet.user.email %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= tweet.user.username %></td>
               <td class="px-6 py-4 whitespace-nowrap"><%= tweet.body %></td>
               <td class="px-6 py-4 whitespace-nowrap"><%= l(tweet.created_at, format: :default) %></td>
               <td class="px-6 py-4 whitespace-nowrap">

@@ -195,6 +195,7 @@ uk:
     dashboard:
       title: "Панель адміністратора"
       email: "Електронна пошта"
+      username: "Ім'я користувача"
       role: "Роль"
       status: "Статус"
       actions: "Дії"
@@ -228,3 +229,11 @@ uk:
     impersonating: "Вхід як користувач: %{email}"
     stopped_impersonating: "Вихід з режиму входження"
     not_authorized: "У вас немає прав для доступу до цієї сторінки"
+
+  search:
+    results_title: "Результати пошуку"
+    placeholder: "Пошук користувачів та твітів..."
+    button_text: "Пошук"
+    users_section_title: "Користувачі"
+    tweets_section_title: "Твіти"
+    no_results: "Нічого не знайдено за запитом \"%{query}\""
