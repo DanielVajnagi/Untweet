@@ -190,3 +190,41 @@ uk:
     deleted: "Коментар успішно видалено"
     error: "Помилка при створенні коментаря"
     delete_error: "Помилка при видаленні коментаря"
+
+  admin:
+    dashboard:
+      title: "Панель адміністратора"
+      email: "Електронна пошта"
+      role: "Роль"
+      status: "Статус"
+      actions: "Дії"
+      impersonate: "Імперсонувати"
+      stop_impersonating: "Зупинити входження"
+      impersonating: "Вхід як користувач: %{email}"
+      change: "Змінити"
+      banned: "Заблоковано"
+      active: "Активний"
+      ban: "Заблокувати"
+      unban: "Розблокувати"
+      true_user: "Справжній користувач: %{email}"
+      ban_unban_column: "Блокування"
+      users: "Користувачі"
+      tweets: "Твіти"
+    tweets:
+      title: "Модерація твітів"
+      user: "Користувач"
+      tweet: "Твіт"
+      created_at: "Створено"
+      actions: "Дії"
+      delete: "Видалити"
+
+  roles:
+    user: "Користувач"
+    admin: "Адміністратор"
+    superadmin: "Супер-адміністратор"
+
+  notices:
+    role_updated: "Роль користувача оновлено"
+    impersonating: "Вхід як користувач: %{email}"
+    stopped_impersonating: "Вихід з режиму входження"
+    not_authorized: "У вас немає прав для доступу до цієї сторінки"
