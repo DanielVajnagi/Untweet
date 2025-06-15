@@ -1,8 +1,8 @@
 class UserIndex < Chewy::Index
   index_scope User
 
-  field :email, analyzer: 'standard'
-  field :username, analyzer: 'standard'
+  field :email, analyzer: "standard"
+  field :username, analyzer: "standard"
   field :created_at, type: "date"
   field :updated_at, type: "date"
   field :role
@@ -12,9 +12,9 @@ class UserIndex < Chewy::Index
   settings analysis: {
     analyzer: {
       standard: {
-        type: 'standard',
-        tokenizer: 'standard',
-        filter: ['lowercase', 'asciifolding']
+        type: "standard",
+        tokenizer: "standard",
+        filter: [ "lowercase", "asciifolding" ]
       }
     }
   }

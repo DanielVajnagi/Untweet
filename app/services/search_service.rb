@@ -7,7 +7,7 @@ class SearchService
           {
             multi_match: {
               query: query,
-              fields: ["username^3", "email"],
+              fields: [ "username^3", "email" ],
               fuzziness: "AUTO"
             }
           },
