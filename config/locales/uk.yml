@@ -195,6 +195,7 @@ uk:
     dashboard:
       title: "Панель адміністратора"
       email: "Електронна пошта"
+      username: "Ім'я користувача"
       role: "Роль"
       status: "Статус"
       actions: "Дії"
